@@ -1,0 +1,22 @@
+{
+  "author": "Chris Oakman <chris@oakmac.com> (http://chrisoakman.com/)",
+  "name": "tree-sitter-clojure",
+  "version": "0.0.1",
+  "description": "Clojure grammar for tree-sitter",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/oakmac/tree-sitter-clojure.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
+    "test": "tree-sitter test"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.11.1"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.13.10"
+  }
+}
