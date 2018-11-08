@@ -1,10 +1,11 @@
 // TODO:
+// multi-line strings
 // numbers
 // - BigInt
 // - BigDecimal
 // - Ratio
+// - hex? octal? etc
 // regex
-// multi-line strings
 // escape characters in strings
 // characters
 // keywords
@@ -14,6 +15,7 @@
 // lists
 // special forms
 // "defn" symbols
+// reader conditionals
 
 const DIGITS = token(sep1(/[0-9]+/, /_+/))
 
