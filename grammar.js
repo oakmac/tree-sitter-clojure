@@ -13,9 +13,10 @@ module.exports = grammar({
     _expression: $ => choice(
       $.set,
       $.hash_map,
-      // $.vector,
+      $.vector,
       // $.list,
 
+      $.string,
       $.nil,
       $.true,
       $.false
@@ -25,6 +26,14 @@ module.exports = grammar({
 
     hash_map: $ => seq('{', repeat($._hash_map_kv), '}'),
     _hash_map_kv: $ => seq($._expression, $._expression),
+
+    vector: $ => seq('[', repeat($._expression), ']'),
+
+    string: $ => token(choice(
+      seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"'),
+      // TODO: support multiline string literals by debugging the following:
+      // seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"', '+', /\n/, '"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)))
+    )),
 
     true: $ => 'true',
     false: $ => 'false',

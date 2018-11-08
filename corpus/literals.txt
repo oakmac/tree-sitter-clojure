@@ -1,5 +1,22 @@
 =====================================
-literal values
+strings
+=====================================
+
+""
+"\""
+"abc"
+"'"
+
+---
+
+(program
+  (string)
+  (string)
+  (string)
+  (string))
+
+=====================================
+booleans + nil
 =====================================
 
 nil ; nil
@@ -12,6 +29,20 @@ false
   (nil) (comment)
   (true)
   (false))
+
+=====================================
+numbers
+=====================================
+
+4
+3.14
+
+
+---
+
+(program
+  (number)
+  (number))
 
 =====================================
 sets
@@ -42,3 +73,18 @@ hash maps
   (hash_map)
   (hash_map (true) (false))
   (hash_map (true) (false) (false) (true)))
+
+=====================================
+vector
+=====================================
+
+[]
+[true]
+[true false true]
+
+---
+
+(program
+  (vector)
+  (vector (true))
+  (vector (true) (false) (true)))
