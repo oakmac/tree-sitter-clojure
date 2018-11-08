@@ -2,13 +2,43 @@
 literal values
 =====================================
 
-nil
+nil ; nil
 true
 false
 
 ---
 
 (program
-  (nil)
+  (nil) (comment)
   (true)
   (false))
+
+=====================================
+sets
+=====================================
+
+#{}
+#{true}
+#{true false}
+
+---
+
+(program
+  (set)
+  (set (true))
+  (set (true) (false)))
+
+=====================================
+hash maps
+=====================================
+
+{}
+{true false}
+{true false false true}
+
+---
+
+(program
+  (hash_map)
+  (hash_map (true) (false))
+  (hash_map (true) (false) (false) (true)))
