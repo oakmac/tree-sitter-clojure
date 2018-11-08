@@ -1,31 +1,52 @@
+// TODO:
+// numbers
+// - BigInt
+// - BigDecimal
+// - Ratio
+// regex
+// multi-line strings
+// escape characters in strings
+// characters
+// keywords
+// sets
+// maps
+// vectors
+// lists
+// special forms
+// "defn" symbols
+
+const DIGITS = token(sep1(/[0-9]+/, /_+/))
+
 module.exports = grammar({
   name: 'clojure',
 
   extras: $ => [
     $.comment,
-    ',', // ignore commas
-    /\s/ // ignore whitespace
+    /(\s|,)/ // ignore whitespace and commas
   ],
 
   rules: {
     program: $ => repeat($._expression),
 
     _expression: $ => choice(
+      $.nil,
+      $.true,
+      $.false,
+      $.number,
+      $.string,
+
       $.set,
       $.hash_map,
       $.vector,
       // $.list,
-
-      $.string,
-      $.nil,
-      $.true,
-      $.false
     ),
 
     set: $ => seq('#{', repeat($._expression), '}'),
 
-    hash_map: $ => seq('{', repeat($._hash_map_kv), '}'),
-    _hash_map_kv: $ => seq($._expression, $._expression),
+    hash_map: $ => seq('{', repeat($.hash_map_kv_pair), '}'),
+    hash_map_kv_pair: $ => seq($.hash_map_key, $.hash_map_value),
+    hash_map_key: $ => $._expression,
+    hash_map_value: $ => $._expression,
 
     vector: $ => seq('[', repeat($._expression), ']'),
 
@@ -35,21 +56,46 @@ module.exports = grammar({
       // seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"', '+', /\n/, '"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)))
     )),
 
+    // -------------------------------------------------------------------------
+    // Numbers
+    // -------------------------------------------------------------------------
+
+    number: $ => choice(
+      $.number_long,
+      $.number_double
+      // $.number_bigint,
+      // $.number_bigdecimal,
+      // $.number_ratio
+    ),
+
+    number_long: $ => /[-+]?\d+/,
+    number_double: $ => token(
+      choice(
+        seq(DIGITS, '.', optional(DIGITS), optional(seq((/[eE]/), optional(choice('-', '+')), DIGITS)), optional(/[fFdD]/)),
+        seq('.', DIGITS, optional(seq((/[eE]/), optional(choice('-','+')), DIGITS)), optional(/[fFdD]/)),
+        seq(DIGITS, /[eE]/, optional(choice('-','+')), DIGITS, optional(/[fFdD]/)),
+        seq(DIGITS, optional(seq((/[eE]/), optional(choice('-','+')), DIGITS)), (/[fFdD]/))
+      )),
+    // number_bigint: $ =>
+    // number_bigdecimal: $ =>
+    // number_ratio: $ =>
+
+    // -------------------------------------------------------------------------
+    // Booleans + nil
+    // -------------------------------------------------------------------------
+
     true: $ => 'true',
     false: $ => 'false',
     nil: $ => 'nil',
+
+    // -------------------------------------------------------------------------
+    // Comments
+    // -------------------------------------------------------------------------
 
     comment: $ => token(seq(';', /.*/))
   }
 })
 
-// TODO:
-// commas ?
-// numbers
-// regex
-// strings
-// keywords
-// sets
-// maps
-// vectors
-// lists
+function sep1 (rule, separator) {
+  return seq(rule, repeat(seq(separator, rule)));
+}

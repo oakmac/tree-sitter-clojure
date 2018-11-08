@@ -34,15 +34,45 @@ false
 numbers
 =====================================
 
-4
-3.14
+42
++1
+-5
++0
+
+4.23e9
+4.23e-9
+4.23e+9
+40.3e6
+40.3e-6
+1.234
+0.123456
+.12345
+1e4
+0.2e-2
+0.0e-4
+.2e-2
 
 
 ---
 
 (program
-  (number)
-  (number))
+  (number (number_long))
+  (number (number_long))
+  (number (number_long))
+  (number (number_long))
+
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double)))
 
 =====================================
 sets
@@ -65,14 +95,18 @@ hash maps
 
 {}
 {true false}
-{true false false true}
+{true false, false true}
 
 ---
 
 (program
   (hash_map)
-  (hash_map (true) (false))
-  (hash_map (true) (false) (false) (true)))
+  (hash_map (hash_map_kv_pair (hash_map_key (true))
+                              (hash_map_value (false))))
+  (hash_map (hash_map_kv_pair (hash_map_key (true))
+                              (hash_map_value (false)))
+            (hash_map_kv_pair (hash_map_key (false))
+                              (hash_map_value (true)))))
 
 =====================================
 vector
