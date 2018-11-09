@@ -56,7 +56,7 @@ module.exports = grammar({
     vector: $ => seq('[', repeat($._expression), ']'),
 
     string: $ => token(choice(
-      seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"'),
+      seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"')
       // TODO: support multiline string literals by debugging the following:
       // seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"', '+', /\n/, '"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)))
     )),
@@ -87,9 +87,9 @@ module.exports = grammar({
     number_double: $ => token(
       choice(
         seq(DIGITS, '.', optional(DIGITS), optional(seq((/[eE]/), optional(choice('-', '+')), DIGITS)), optional(/[fFdD]/)),
-        seq('.', DIGITS, optional(seq((/[eE]/), optional(choice('-','+')), DIGITS)), optional(/[fFdD]/)),
-        seq(DIGITS, /[eE]/, optional(choice('-','+')), DIGITS, optional(/[fFdD]/)),
-        seq(DIGITS, optional(seq((/[eE]/), optional(choice('-','+')), DIGITS)), (/[fFdD]/))
+        seq('.', DIGITS, optional(seq((/[eE]/), optional(choice('-', '+')), DIGITS)), optional(/[fFdD]/)),
+        seq(DIGITS, /[eE]/, optional(choice('-', '+')), DIGITS, optional(/[fFdD]/)),
+        seq(DIGITS, optional(seq((/[eE]/), optional(choice('-', '+')), DIGITS)), (/[fFdD]/))
       )),
     // number_bigint: $ =>
     // number_bigdecimal: $ =>
@@ -112,5 +112,5 @@ module.exports = grammar({
 })
 
 function sep1 (rule, separator) {
-  return seq(rule, repeat(seq(separator, rule)));
+  return seq(rule, repeat(seq(separator, rule)))
 }
