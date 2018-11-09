@@ -42,6 +42,10 @@
         {
           "type": "SYMBOL",
           "name": "vector"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "keyword"
         }
       ]
     },
@@ -162,6 +166,49 @@
           }
         ]
       }
+    },
+    "keyword": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "unqualified_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "qualified_keyword"
+        }
+      ]
+    },
+    "unqualified_keyword": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_keyword_chars"
+        }
+      ]
+    },
+    "qualified_keyword": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "::"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_keyword_chars"
+        }
+      ]
+    },
+    "_keyword_chars": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z0-9-_!+:]+"
     },
     "number": {
       "type": "CHOICE",

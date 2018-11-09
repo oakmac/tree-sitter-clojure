@@ -9,6 +9,7 @@
 // escape characters in strings
 // characters
 // keywords
+// namespace-qualified keyword
 // sets
 // maps
 // vectors
@@ -41,6 +42,8 @@ module.exports = grammar({
       $.hash_map,
       $.vector,
       // $.list,
+
+      $.keyword
     ),
 
     set: $ => seq('#{', repeat($._expression), '}'),
@@ -57,6 +60,16 @@ module.exports = grammar({
       // TODO: support multiline string literals by debugging the following:
       // seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"', '+', /\n/, '"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)))
     )),
+
+    keyword: $ => choice(
+      $.unqualified_keyword,
+      $.qualified_keyword
+    ),
+
+    unqualified_keyword: $ => seq(':', $._keyword_chars),
+    qualified_keyword: $ => seq('::', $._keyword_chars),
+
+    _keyword_chars: $ => /[a-zA-Z0-9-_!+:]+/,
 
     // -------------------------------------------------------------------------
     // Numbers

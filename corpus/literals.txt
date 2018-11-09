@@ -122,3 +122,27 @@ vector
   (vector)
   (vector (true))
   (vector (true) (false) (true)))
+
+=====================================
+keywords
+=====================================
+
+:foo
+:rubber-baby-buggy-bumper!
+:j3_!:7
+:HELICOPTER
+:+fiduciary+
+
+::foo
+
+---
+
+(program
+  (keyword (unqualified_keyword))
+  (keyword (unqualified_keyword))
+  (keyword (unqualified_keyword))
+  (keyword (unqualified_keyword))
+  (keyword (unqualified_keyword))
+
+  (keyword (qualified_keyword))
+  )
