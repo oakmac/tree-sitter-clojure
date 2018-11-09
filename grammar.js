@@ -1,24 +1,31 @@
+// Helpful links:
+// https://clojure.org/guides/learn/syntax
+// https://clojure.org/reference/reader
+// https://clojure.org/guides/weird_characters
+// https://github.com/venantius/glow/blob/master/resources/parsers/Clojure.g4
+// https://github.com/tree-sitter/tree-sitter-java/blob/master/grammar.js
+
 // TODO:
 // multi-line strings
+// escape characters in strings?
 // numbers
 // - BigInt
 // - BigDecimal
 // - Ratio
-// - hex? octal? etc
+// - hex? octal? etc https://stackoverflow.com/questions/41489239/octal-number-handling-in-clojure
+// - https://cljs.github.io/api/syntax/number
 // regex
-// escape characters in strings
-// characters
-// keywords
 // namespace-qualified keyword
-// sets
-// maps
-// vectors
+// symbols
 // lists
 // special forms
 // "defn" symbols
 // reader conditionals
 
 const DIGITS = token(sep1(/[0-9]+/, /_+/))
+const specialCharLiterals = [
+  'newline', 'space'
+]
 
 module.exports = grammar({
   name: 'clojure',
@@ -36,40 +43,25 @@ module.exports = grammar({
       $.true,
       $.false,
       $.number,
+      $.character,
       $.string,
+      // $.regex,
+
+      $.keyword,
 
       $.set,
       $.hash_map,
       $.vector,
       // $.list,
-
-      $.keyword
     ),
 
-    set: $ => seq('#{', repeat($._expression), '}'),
+    // -------------------------------------------------------------------------
+    // nil + booleans
+    // -------------------------------------------------------------------------
 
-    hash_map: $ => seq('{', repeat($.hash_map_kv_pair), '}'),
-    hash_map_kv_pair: $ => seq($.hash_map_key, $.hash_map_value),
-    hash_map_key: $ => $._expression,
-    hash_map_value: $ => $._expression,
-
-    vector: $ => seq('[', repeat($._expression), ']'),
-
-    string: $ => token(choice(
-      seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"')
-      // TODO: support multiline string literals by debugging the following:
-      // seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"', '+', /\n/, '"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)))
-    )),
-
-    keyword: $ => choice(
-      $.unqualified_keyword,
-      $.qualified_keyword
-    ),
-
-    unqualified_keyword: $ => seq(':', $._keyword_chars),
-    qualified_keyword: $ => seq('::', $._keyword_chars),
-
-    _keyword_chars: $ => /[a-zA-Z0-9-_!+:]+/,
+    nil: $ => 'nil',
+    true: $ => 'true',
+    false: $ => 'false',
 
     // -------------------------------------------------------------------------
     // Numbers
@@ -96,12 +88,76 @@ module.exports = grammar({
     // number_ratio: $ =>
 
     // -------------------------------------------------------------------------
-    // Booleans + nil
+    // Character - \a
     // -------------------------------------------------------------------------
 
-    true: $ => 'true',
-    false: $ => 'false',
-    nil: $ => 'nil',
+    character: $ => seq('\\', choice($._normal_char, $._special_char, $._unicode_char, $._octal_char)),
+    _normal_char: $ => /./,
+    _special_char: $ => choice('newline', 'space', 'tab', 'formfeed', 'backspace', 'return'),
+    _unicode_char: $ => seq('u', $._hex_char, $._hex_char, $._hex_char, $._hex_char),
+    _hex_char: $ => /[A-Fa-f0-9]/,
+    _octal_char: $ => seq('o', $._octal_num),
+    _octal_num: $ => choice(/[0-3][0-7][0-7]/, /[0-7][0-7]/, /[0-7]/),
+
+    // -------------------------------------------------------------------------
+    // Strings - ""
+    // -------------------------------------------------------------------------
+
+    string: $ => token(choice(
+      seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"')
+      // TODO: support multiline string literals by debugging the following:
+      // seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"', '+', /\n/, '"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)))
+    )),
+
+    // -------------------------------------------------------------------------
+    // Regular Expressions - #""
+    // -------------------------------------------------------------------------
+
+    // TODO: write me
+
+    // -------------------------------------------------------------------------
+    // Keywords - :foo
+    // -------------------------------------------------------------------------
+
+    keyword: $ => choice(
+      $.unqualified_keyword,
+      $.qualified_keyword
+    ),
+
+    unqualified_keyword: $ => seq(':', $._keyword_chars),
+    qualified_keyword: $ => seq('::', $._keyword_chars),
+
+    _keyword_chars: $ => /[a-zA-Z0-9-_!+:]+/,
+
+    // -------------------------------------------------------------------------
+    // Set - #{}
+    // -------------------------------------------------------------------------
+
+    set: $ => seq('#{', repeat($._expression), '}'),
+
+    // -------------------------------------------------------------------------
+    // Hash Map - {}
+    // -------------------------------------------------------------------------
+
+    hash_map: $ => seq('{', repeat($.hash_map_kv_pair), '}'),
+    hash_map_kv_pair: $ => seq($.hash_map_key, $.hash_map_value),
+    hash_map_key: $ => $._expression,
+    hash_map_value: $ => $._expression,
+
+    // -------------------------------------------------------------------------
+    // Vector - []
+    // -------------------------------------------------------------------------
+
+    vector: $ => seq('[', repeat($._expression), ']'),
+
+
+
+
+
+
+
+
+
 
     // -------------------------------------------------------------------------
     // Comments

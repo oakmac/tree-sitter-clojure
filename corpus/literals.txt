@@ -1,22 +1,5 @@
 =====================================
-strings
-=====================================
-
-""
-"\""
-"abc"
-"'"
-
----
-
-(program
-  (string)
-  (string)
-  (string)
-  (string))
-
-=====================================
-booleans + nil
+nil + booleans
 =====================================
 
 nil ; nil
@@ -31,7 +14,7 @@ false
   (false))
 
 =====================================
-numbers
+Numbers
 =====================================
 
 42
@@ -51,7 +34,6 @@ numbers
 0.2e-2
 0.0e-4
 .2e-2
-
 
 ---
 
@@ -75,56 +57,72 @@ numbers
   (number (number_double)))
 
 =====================================
-sets
+Characters - \a
 =====================================
 
-#{}
-#{true}
-#{true false}
+\a
+\b
+\Z
+\}
+
+\newline
+\space
+\tab
+\formfeed
+\backspace
+\return
+
+\u2202
+\u03a9
+\u00A1
+
+\o3
+\o41
+\o256
 
 ---
 
 (program
-  (set)
-  (set (true))
-  (set (true) (false)))
+  (character)
+  (character)
+  (character)
+  (character)
+
+  (character)
+  (character)
+  (character)
+  (character)
+  (character)
+  (character)
+
+  (character)
+  (character)
+  (character)
+
+  (character)
+  (character)
+  (character))
 
 =====================================
-hash maps
+Strings - ""
 =====================================
 
-{}
-{true false}
-{true false, false true}
+""
+"\""
+"abc"
+"'"
 
 ---
 
 (program
-  (hash_map)
-  (hash_map (hash_map_kv_pair (hash_map_key (true))
-                              (hash_map_value (false))))
-  (hash_map (hash_map_kv_pair (hash_map_key (true))
-                              (hash_map_value (false)))
-            (hash_map_kv_pair (hash_map_key (false))
-                              (hash_map_value (true)))))
+  (string)
+  (string)
+  (string)
+  (string))
+
 
 =====================================
-vector
-=====================================
-
-[]
-[true]
-[true false true]
-
----
-
-(program
-  (vector)
-  (vector (true))
-  (vector (true) (false) (true)))
-
-=====================================
-keywords
+Keywords - :foo
 =====================================
 
 :foo
@@ -146,3 +144,54 @@ keywords
 
   (keyword (qualified_keyword))
   )
+
+=====================================
+Sets - #{}
+=====================================
+
+#{}
+#{true}
+#{true false}
+#{"a", "b", nil}
+
+---
+
+(program
+  (set)
+  (set (true))
+  (set (true) (false))
+  (set (string) (string) (nil)))
+
+=====================================
+Hash Map - {}
+=====================================
+
+{}
+{true false}
+{true false, false true}
+
+---
+
+(program
+  (hash_map)
+  (hash_map (hash_map_kv_pair (hash_map_key (true))
+                              (hash_map_value (false))))
+  (hash_map (hash_map_kv_pair (hash_map_key (true))
+                              (hash_map_value (false)))
+            (hash_map_kv_pair (hash_map_key (false))
+                              (hash_map_value (true)))))
+
+=====================================
+Vector - []
+=====================================
+
+[]
+[true]
+["a" :b 3]
+
+---
+
+(program
+  (vector)
+  (vector (true))
+  (vector (string) (keyword (unqualified_keyword)) (number (number_long))))
