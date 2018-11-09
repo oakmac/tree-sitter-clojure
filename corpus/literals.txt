@@ -120,6 +120,22 @@ Strings - ""
   (string)
   (string))
 
+=====================================
+Regular Expressions - #""
+=====================================
+
+#""
+#"\""
+#"pattern"
+#"(\w+)\s(\w+)"
+
+---
+
+(program
+  (regex)
+  (regex)
+  (regex)
+  (regex))
 
 =====================================
 Keywords - :foo

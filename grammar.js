@@ -14,7 +14,6 @@
 // - Ratio
 // - hex? octal? etc https://stackoverflow.com/questions/41489239/octal-number-handling-in-clojure
 // - https://cljs.github.io/api/syntax/number
-// regex
 // namespace-qualified keyword
 // symbols
 // lists
@@ -45,7 +44,7 @@ module.exports = grammar({
       $.number,
       $.character,
       $.string,
-      // $.regex,
+      $.regex,
 
       $.keyword,
 
@@ -113,7 +112,7 @@ module.exports = grammar({
     // Regular Expressions - #""
     // -------------------------------------------------------------------------
 
-    // TODO: write me
+    regex: $ => seq('#"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"'),
 
     // -------------------------------------------------------------------------
     // Keywords - :foo
