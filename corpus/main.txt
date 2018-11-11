@@ -10,8 +10,8 @@ false
 
 (program
   (nil)
-  (true)
-  (false))
+  (boolean (true))
+  (boolean (false)))
 
 =====================================
 Numbers
@@ -111,6 +111,8 @@ Strings - ""
 "\""
 "abc"
 "'"
+"i am a multi-line
+ string\""
 
 ---
 
@@ -118,7 +120,9 @@ Strings - ""
   (string)
   (string)
   (string)
-  (string))
+  (string)
+  (string)
+  )
 
 =====================================
 Regular Expressions - #""
@@ -138,9 +142,34 @@ Regular Expressions - #""
   (regex))
 
 =====================================
+Quote - '() (quote)
+=====================================
+
+'()
+'"a"
+'("a" "b" "c")
+
+(quote ())
+(quote "a")
+(quote ("a" "b" "c"))
+
+---
+
+(program
+  (quote (list))
+  (quote (string))
+  (quote (list (string) (string) (string)))
+
+  (quote (list))
+  (quote (string))
+  (quote (list (string) (string) (string)))
+  )
+
+=====================================
 Keywords - :foo
 =====================================
 
+:a
 :foo
 :rubber-baby-buggy-bumper!
 :j3_!:7
@@ -157,9 +186,63 @@ Keywords - :foo
   (keyword (unqualified_keyword))
   (keyword (unqualified_keyword))
   (keyword (unqualified_keyword))
+  (keyword (unqualified_keyword))
 
   (keyword (qualified_keyword))
   )
+
+=====================================
+List - ()
+=====================================
+
+()
+("a" "b" "c")
+(:a {:a "a"})
+
+---
+
+(program
+  (list)
+  (list (string) (string) (string))
+  (list (keyword (unqualified_keyword))
+        (hash_map (hash_map_kv_pair (hash_map_key (keyword (unqualified_keyword)))
+                                    (hash_map_value (string))))))
+
+=====================================
+Vector - []
+=====================================
+
+[]
+[true]
+["a" :b 3]
+
+---
+
+(program
+  (vector)
+  (vector (boolean (true)))
+  (vector (string) (keyword (unqualified_keyword)) (number (number_long))))
+
+=====================================
+Hash Map - {}
+=====================================
+
+{}
+{"a" :a}
+{"x" :x, "y" :y, "z" :z}
+
+---
+
+(program
+  (hash_map)
+  (hash_map (hash_map_kv_pair (hash_map_key (string))
+                              (hash_map_value (keyword (unqualified_keyword)))))
+  (hash_map (hash_map_kv_pair (hash_map_key (string))
+                              (hash_map_value (keyword (unqualified_keyword))))
+            (hash_map_kv_pair (hash_map_key (string))
+                              (hash_map_value (keyword (unqualified_keyword))))
+            (hash_map_kv_pair (hash_map_key (string))
+                              (hash_map_value (keyword (unqualified_keyword))))))
 
 =====================================
 Sets - #{}
@@ -174,43 +257,9 @@ Sets - #{}
 
 (program
   (set)
-  (set (true))
-  (set (true) (false))
+  (set (boolean (true)))
+  (set (boolean (true)) (boolean (false)))
   (set (string) (string) (nil)))
-
-=====================================
-Hash Map - {}
-=====================================
-
-{}
-{true false}
-{true false, false true}
-
----
-
-(program
-  (hash_map)
-  (hash_map (hash_map_kv_pair (hash_map_key (true))
-                              (hash_map_value (false))))
-  (hash_map (hash_map_kv_pair (hash_map_key (true))
-                              (hash_map_value (false)))
-            (hash_map_kv_pair (hash_map_key (false))
-                              (hash_map_value (true)))))
-
-=====================================
-Vector - []
-=====================================
-
-[]
-[true]
-["a" :b 3]
-
----
-
-(program
-  (vector)
-  (vector (true))
-  (vector (string) (keyword (unqualified_keyword)) (number (number_long))))
 
 =====================================
 Comments - #! ; #_

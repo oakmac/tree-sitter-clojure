@@ -8,7 +8,6 @@
 // http://cljs.github.io/api/syntax/
 
 // TODO:
-// multi-line strings
 // escape characters in strings?
 // numbers
 // - BigInt
@@ -19,6 +18,7 @@
 // namespace-qualified keyword
 // symbols
 // lists
+// namespaced map #:{} #::{}
 // syntax quote
 // special forms
 // metadata
@@ -45,14 +45,14 @@ module.exports = grammar({
     program: $ => repeat($._anything),
 
     _anything: $ => choice(
-      // TODO: wrap all of these in a "literal" form?
       $.nil,
-      $.true,
-      $.false,
+      $.boolean,
       $.number,
       $.character,
       $.string,
       $.regex,
+
+      $.quote,
 
       $.keyword,
 
@@ -69,6 +69,7 @@ module.exports = grammar({
     // -------------------------------------------------------------------------
 
     nil: $ => 'nil',
+    boolean: $ => choice($.true, $.false),
     true: $ => 'true',
     false: $ => 'false',
 
@@ -112,17 +113,23 @@ module.exports = grammar({
     // Strings - ""
     // -------------------------------------------------------------------------
 
-    string: $ => token(choice(
-      seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"')
-      // TODO: support multiline string literals by debugging the following:
-      // seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"', '+', /\n/, '"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)))
-    )),
+    string: $ => seq('"', repeat(choice('\\"', /[^"]/)), '"'),
 
     // -------------------------------------------------------------------------
     // Regular Expressions - #""
     // -------------------------------------------------------------------------
 
-    regex: $ => seq('#"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"'),
+    regex: $ => seq('#"', repeat(choice('\\"', /[^"\n\r]/)), '"'),
+
+    // -------------------------------------------------------------------------
+    // Quote - '() (quote)
+    // -------------------------------------------------------------------------
+
+    // TODO: would it be useful to distinguish between these two?
+    quote: $ => choice(
+      seq("'", $._anything),
+      seq('(quote', $._anything, ')')
+    ),
 
     // -------------------------------------------------------------------------
     // Keywords - :foo
