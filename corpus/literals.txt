@@ -219,7 +219,7 @@ Comments - ; #_
 ;; foo
 #_["a" "b"]
 ["a" "b" #_:z "d"]
-["a" "b" #_ "c" "d"]
+["a" "b" #_ #{} "d"]
 
 ---
 
@@ -233,5 +233,5 @@ Comments - ; #_
           (string))
   (vector (string)
           (string)
-          (comment (ignore_form (string)))
+          (comment (ignore_form (set)))
           (string)))

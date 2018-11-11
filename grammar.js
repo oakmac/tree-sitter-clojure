@@ -30,7 +30,7 @@
 // gensym
 // splicing reader conditional
 // tagged literals
-// Should we map (ERROR) nodes explicitly in some cases?
+// Should we add tests for (ERROR) nodes in some cases?
 
 const DIGITS = token(sep1(/[0-9]+/, /_+/))
 
