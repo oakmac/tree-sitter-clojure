@@ -17,8 +17,6 @@
 // - https://cljs.github.io/api/syntax/number
 // namespace-qualified keyword
 // symbols
-// lists
-// namespaced map #:{} #::{}
 // syntax quote
 // special forms
 // metadata
@@ -161,10 +159,20 @@ module.exports = grammar({
     // Hash Map - {}
     // -------------------------------------------------------------------------
 
-    hash_map: $ => seq('{', repeat($.hash_map_kv_pair), '}'),
+    hash_map: $ => choice(
+      seq('{', repeat($.hash_map_kv_pair), '}'),
+      $.namespace_map
+    ),
+    namespace_map: $ => choice(
+      seq('#::{', repeat($.hash_map_kv_pair), '}'),
+      seq('#', $._symbol_chars, '{', repeat($.hash_map_kv_pair), '}')
+    ),
     hash_map_kv_pair: $ => seq($.hash_map_key, $.hash_map_value),
     hash_map_key: $ => $._anything,
     hash_map_value: $ => $._anything,
+
+    // reference: https://clojure.org/reference/reader#_symbols
+    _symbol_chars: $ => /[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\'\?]*/,
 
     // -------------------------------------------------------------------------
     // Set - #{}

@@ -242,7 +242,34 @@ Hash Map - {}
             (hash_map_kv_pair (hash_map_key (string))
                               (hash_map_value (keyword (unqualified_keyword))))
             (hash_map_kv_pair (hash_map_key (string))
-                              (hash_map_value (keyword (unqualified_keyword))))))
+                              (hash_map_value (keyword (unqualified_keyword)))))
+  )
+
+=====================================
+Namespace Map - #::{} #foo{}
+=====================================
+
+#::{}
+#::{:a 1, :b 2}
+
+#person{}
+#foo-bar{"a" "a"}
+
+---
+
+(program
+  (hash_map (namespace_map))
+  (hash_map (namespace_map
+              (hash_map_kv_pair (hash_map_key (keyword (unqualified_keyword)))
+                                (hash_map_value (number (number_long))))
+              (hash_map_kv_pair (hash_map_key (keyword (unqualified_keyword)))
+                                (hash_map_value (number (number_long))))))
+
+  (hash_map (namespace_map))
+  (hash_map (namespace_map
+              (hash_map_kv_pair (hash_map_key (string))
+                                (hash_map_value (string)))))
+  )
 
 =====================================
 Sets - #{}
