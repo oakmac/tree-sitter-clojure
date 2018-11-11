@@ -223,6 +223,7 @@ Comments - #! ; #_
 ;; foo
 
 #_["a" "b"]
+#_ #{"a" "b"}
 ["a" "b" #_:z "d"]
 ["a" "b" #_ #{} "d"]
 
@@ -235,8 +236,8 @@ Comments - #! ; #_
   (comment (semicolon))
   (comment (semicolon))
 
-  (comment (ignore_form
-             (vector (string) (string))))
+  (comment (ignore_form (vector (string) (string))))
+  (comment (ignore_form (set (string) (string))))
   (vector (string)
           (string)
           (comment (ignore_form (keyword (unqualified_keyword))))
