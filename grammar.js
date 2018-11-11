@@ -167,6 +167,7 @@ module.exports = grammar({
     semicolon: $ => seq(';', /.*/),
     ignore_form: $ => seq('#_', $._anything),
     // TODO: comment_macro
+    // TODO: shebang line
   }
 })
 
