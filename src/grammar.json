@@ -5,10 +5,10 @@
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
-        "name": "_expression"
+        "name": "_anything"
       }
     },
-    "_expression": {
+    "_anything": {
       "type": "CHOICE",
       "members": [
         {
@@ -54,6 +54,10 @@
         {
           "type": "SYMBOL",
           "name": "vector"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
         }
       ]
     },
@@ -803,7 +807,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "_expression"
+            "name": "_anything"
           }
         },
         {
@@ -847,11 +851,11 @@
     },
     "hash_map_key": {
       "type": "SYMBOL",
-      "name": "_expression"
+      "name": "_anything"
     },
     "hash_map_value": {
       "type": "SYMBOL",
-      "name": "_expression"
+      "name": "_anything"
     },
     "vector": {
       "type": "SEQ",
@@ -864,7 +868,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "_expression"
+            "name": "_anything"
           }
         },
         {
@@ -874,27 +878,46 @@
       ]
     },
     "comment": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": ";"
-          },
-          {
-            "type": "PATTERN",
-            "value": ".*"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "semicolon"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ignore_form"
+        }
+      ]
+    },
+    "semicolon": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ";"
+        },
+        {
+          "type": "PATTERN",
+          "value": ".*"
+        }
+      ]
+    },
+    "ignore_form": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#_"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_anything"
+        }
+      ]
     }
   },
   "extras": [
-    {
-      "type": "SYMBOL",
-      "name": "comment"
-    },
     {
       "type": "PATTERN",
       "value": "(\\s|,)"

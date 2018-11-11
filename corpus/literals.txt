@@ -2,14 +2,14 @@
 nil + booleans
 =====================================
 
-nil ; nil
+nil
 true
 false
 
 ---
 
 (program
-  (nil) (comment)
+  (nil)
   (true)
   (false))
 
@@ -211,3 +211,27 @@ Vector - []
   (vector)
   (vector (true))
   (vector (string) (keyword (unqualified_keyword)) (number (number_long))))
+
+=====================================
+Comments - ; #_
+=====================================
+
+;; foo
+#_["a" "b"]
+["a" "b" #_:z "d"]
+["a" "b" #_ "c" "d"]
+
+---
+
+(program
+  (comment (semicolon))
+  (comment (ignore_form
+             (vector (string) (string))))
+  (vector (string)
+          (string)
+          (comment (ignore_form (keyword (unqualified_keyword))))
+          (string))
+  (vector (string)
+          (string)
+          (comment (ignore_form (string)))
+          (string)))

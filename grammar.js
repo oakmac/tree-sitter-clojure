@@ -4,6 +4,8 @@
 // https://clojure.org/guides/weird_characters
 // https://github.com/venantius/glow/blob/master/resources/parsers/Clojure.g4
 // https://github.com/tree-sitter/tree-sitter-java/blob/master/grammar.js
+// https://github.com/atom/language-clojure/blob/master/grammars/clojure.cson
+// http://cljs.github.io/api/syntax/
 
 // TODO:
 // multi-line strings
@@ -17,27 +19,33 @@
 // namespace-qualified keyword
 // symbols
 // lists
+// syntax quote
 // special forms
+// metadata
 // "defn" symbols
-// reader conditionals
+// reader conditional
+// symbolic value
+// unquote
+// unquote splicing
+// gensym
+// splicing reader conditional
+// tagged literals
+// Should we map (ERROR) nodes explicitly in some cases?
 
 const DIGITS = token(sep1(/[0-9]+/, /_+/))
-const specialCharLiterals = [
-  'newline', 'space'
-]
 
 module.exports = grammar({
   name: 'clojure',
 
   extras: $ => [
-    $.comment,
     /(\s|,)/ // ignore whitespace and commas
   ],
 
   rules: {
-    program: $ => repeat($._expression),
+    program: $ => repeat($._anything),
 
-    _expression: $ => choice(
+    _anything: $ => choice(
+      // TODO: wrap all of these in a "literal" form?
       $.nil,
       $.true,
       $.false,
@@ -52,6 +60,8 @@ module.exports = grammar({
       $.hash_map,
       $.vector,
       // $.list,
+
+      $.comment,
     ),
 
     // -------------------------------------------------------------------------
@@ -132,7 +142,7 @@ module.exports = grammar({
     // Set - #{}
     // -------------------------------------------------------------------------
 
-    set: $ => seq('#{', repeat($._expression), '}'),
+    set: $ => seq('#{', repeat($._anything), '}'),
 
     // -------------------------------------------------------------------------
     // Hash Map - {}
@@ -140,29 +150,23 @@ module.exports = grammar({
 
     hash_map: $ => seq('{', repeat($.hash_map_kv_pair), '}'),
     hash_map_kv_pair: $ => seq($.hash_map_key, $.hash_map_value),
-    hash_map_key: $ => $._expression,
-    hash_map_value: $ => $._expression,
+    hash_map_key: $ => $._anything,
+    hash_map_value: $ => $._anything,
 
     // -------------------------------------------------------------------------
     // Vector - []
     // -------------------------------------------------------------------------
 
-    vector: $ => seq('[', repeat($._expression), ']'),
-
-
-
-
-
-
-
-
-
+    vector: $ => seq('[', repeat($._anything), ']'),
 
     // -------------------------------------------------------------------------
     // Comments
     // -------------------------------------------------------------------------
 
-    comment: $ => token(seq(';', /.*/))
+    comment: $ => choice($.semicolon, $.ignore_form),
+    semicolon: $ => seq(';', /.*/),
+    ignore_form: $ => seq('#_', $._anything),
+    // TODO: comment_macro
   }
 })
 
