@@ -213,9 +213,13 @@ Vector - []
   (vector (string) (keyword (unqualified_keyword)) (number (number_long))))
 
 =====================================
-Comments - ; #_
+Comments - #! ; #_
 =====================================
 
+#!/usr/bin/env
+#! #{} :foo
+
+; foo
 ;; foo
 
 #_["a" "b"]
@@ -225,6 +229,10 @@ Comments - ; #_
 ---
 
 (program
+  (comment (shebang_line))
+  (comment (shebang_line))
+
+  (comment (semicolon))
   (comment (semicolon))
 
   (comment (ignore_form

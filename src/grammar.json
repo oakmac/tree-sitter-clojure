@@ -886,6 +886,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "shebang_line"
+        },
+        {
+          "type": "SYMBOL",
           "name": "ignore_form"
         },
         {
@@ -900,6 +904,19 @@
         {
           "type": "STRING",
           "value": ";"
+        },
+        {
+          "type": "PATTERN",
+          "value": ".*"
+        }
+      ]
+    },
+    "shebang_line": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#!"
         },
         {
           "type": "PATTERN",

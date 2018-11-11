@@ -163,11 +163,11 @@ module.exports = grammar({
     // Comments
     // -------------------------------------------------------------------------
 
-    comment: $ => choice($.semicolon, $.ignore_form, $.comment_macro),
+    comment: $ => choice($.semicolon, $.shebang_line, $.ignore_form, $.comment_macro),
     semicolon: $ => seq(';', /.*/),
+    shebang_line: $ => seq('#!', /.*/),
     ignore_form: $ => seq('#_', $._anything),
-    comment_macro: $ => seq('(comment', repeat($._anything), ')'),
-    // TODO: shebang line
+    comment_macro: $ => seq('(comment', repeat($._anything), ')')
   }
 })
 
