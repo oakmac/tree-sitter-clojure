@@ -887,6 +887,10 @@
         {
           "type": "SYMBOL",
           "name": "ignore_form"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment_macro"
         }
       ]
     },
@@ -913,6 +917,26 @@
         {
           "type": "SYMBOL",
           "name": "_anything"
+        }
+      ]
+    },
+    "comment_macro": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "(comment"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_anything"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     }

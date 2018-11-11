@@ -217,6 +217,7 @@ Comments - ; #_
 =====================================
 
 ;; foo
+
 #_["a" "b"]
 ["a" "b" #_:z "d"]
 ["a" "b" #_ #{} "d"]
@@ -225,6 +226,7 @@ Comments - ; #_
 
 (program
   (comment (semicolon))
+
   (comment (ignore_form
              (vector (string) (string))))
   (vector (string)
@@ -234,4 +236,23 @@ Comments - ; #_
   (vector (string)
           (string)
           (comment (ignore_form (set)))
-          (string)))
+          (string))
+  )
+
+=====================================
+Comments - comment macro
+=====================================
+
+(comment)
+(comment "foo")
+(comment ["a" "b"] "foo")
+["a" (comment "b") "c"]
+
+---
+
+(program
+  (comment (comment_macro))
+  (comment (comment_macro (string)))
+  (comment (comment_macro (vector (string) (string)) (string)))
+  (vector (string) (comment (comment_macro (string))) (string))
+  )
