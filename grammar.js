@@ -15,8 +15,6 @@
 // - Ratio
 // - hex? octal? etc https://stackoverflow.com/questions/41489239/octal-number-handling-in-clojure
 // - https://cljs.github.io/api/syntax/number
-// namespace-qualified keyword
-// symbols
 // syntax quote
 // special forms
 // metadata
@@ -135,14 +133,16 @@ module.exports = grammar({
     // -------------------------------------------------------------------------
 
     keyword: $ => choice(
-      $.unqualified_keyword,
+      $._unqualified_keyword,
       $.qualified_keyword
     ),
 
-    unqualified_keyword: $ => seq(':', $._keyword_chars),
-    qualified_keyword: $ => seq('::', $._keyword_chars),
-
-    _keyword_chars: $ => /[a-zA-Z0-9-_!+:]+/,
+    _unqualified_keyword: $ => seq(':', $._keyword_chars),
+    qualified_keyword: $ => choice(
+      seq('::', $._keyword_chars),
+      seq('::', $._keyword_chars, '/', $._keyword_chars)
+    ),
+    _keyword_chars: $ => /[a-zA-Z0-9\-\_\!\+\.][a-zA-Z0-9\-\_\!\+\.\:]*/,
 
     // -------------------------------------------------------------------------
     // Symbols - foo

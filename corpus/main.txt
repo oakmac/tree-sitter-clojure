@@ -177,17 +177,19 @@ Keywords - :foo
 :+fiduciary+
 
 ::foo
+::foo/bar
 
 ---
 
 (program
-  (keyword (unqualified_keyword))
-  (keyword (unqualified_keyword))
-  (keyword (unqualified_keyword))
-  (keyword (unqualified_keyword))
-  (keyword (unqualified_keyword))
-  (keyword (unqualified_keyword))
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
 
+  (keyword (qualified_keyword))
   (keyword (qualified_keyword))
   )
 
@@ -232,8 +234,8 @@ List - ()
 (program
   (list)
   (list (string) (string) (string))
-  (list (keyword (unqualified_keyword))
-        (hash_map (hash_map_kv_pair (hash_map_key (keyword (unqualified_keyword)))
+  (list (keyword)
+        (hash_map (hash_map_kv_pair (hash_map_key (keyword))
                                     (hash_map_value (string))))))
 
 =====================================
@@ -249,7 +251,7 @@ Vector - []
 (program
   (vector)
   (vector (boolean (true)))
-  (vector (string) (keyword (unqualified_keyword)) (number (number_long))))
+  (vector (string) (keyword) (number (number_long))))
 
 =====================================
 Hash Map - {}
@@ -264,13 +266,13 @@ Hash Map - {}
 (program
   (hash_map)
   (hash_map (hash_map_kv_pair (hash_map_key (string))
-                              (hash_map_value (keyword (unqualified_keyword)))))
+                              (hash_map_value (keyword))))
   (hash_map (hash_map_kv_pair (hash_map_key (string))
-                              (hash_map_value (keyword (unqualified_keyword))))
+                              (hash_map_value (keyword)))
             (hash_map_kv_pair (hash_map_key (string))
-                              (hash_map_value (keyword (unqualified_keyword))))
+                              (hash_map_value (keyword)))
             (hash_map_kv_pair (hash_map_key (string))
-                              (hash_map_value (keyword (unqualified_keyword)))))
+                              (hash_map_value (keyword))))
   )
 
 =====================================
@@ -288,9 +290,9 @@ Namespace Map - #::{} #foo{}
 (program
   (hash_map (namespace_map))
   (hash_map (namespace_map
-              (hash_map_kv_pair (hash_map_key (keyword (unqualified_keyword)))
+              (hash_map_kv_pair (hash_map_key (keyword))
                                 (hash_map_value (number (number_long))))
-              (hash_map_kv_pair (hash_map_key (keyword (unqualified_keyword)))
+              (hash_map_kv_pair (hash_map_key (keyword))
                                 (hash_map_value (number (number_long))))))
 
   (hash_map (namespace_map))
@@ -344,7 +346,7 @@ Comments - #! ; #_
   (comment (ignore_form (set (string) (string))))
   (vector (string)
           (string)
-          (comment (ignore_form (keyword (unqualified_keyword))))
+          (comment (ignore_form (keyword)))
           (string))
   (vector (string)
           (string)

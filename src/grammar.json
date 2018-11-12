@@ -806,7 +806,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "unqualified_keyword"
+          "name": "_unqualified_keyword"
         },
         {
           "type": "SYMBOL",
@@ -814,7 +814,7 @@
         }
       ]
     },
-    "unqualified_keyword": {
+    "_unqualified_keyword": {
       "type": "SEQ",
       "members": [
         {
@@ -828,21 +828,47 @@
       ]
     },
     "qualified_keyword": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "::"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "::"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_keyword_chars"
+            }
+          ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_keyword_chars"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "::"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_keyword_chars"
+            },
+            {
+              "type": "STRING",
+              "value": "/"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_keyword_chars"
+            }
+          ]
         }
       ]
     },
     "_keyword_chars": {
       "type": "PATTERN",
-      "value": "[a-zA-Z0-9-_!+:]+"
+      "value": "[a-zA-Z0-9\\-\\_\\!\\+\\.][a-zA-Z0-9\\-\\_\\!\\+\\.\\:]*"
     },
     "symbol": {
       "type": "CHOICE",
