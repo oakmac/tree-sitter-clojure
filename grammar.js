@@ -160,8 +160,66 @@ module.exports = grammar({
 
     symbol: $ => $._symbol,
     _symbol: $ => choice(
+      $.special_form,
+      $.threading_macro,
       $._symbol_chars,
       $.qualified_symbol
+    ),
+
+    special_form: $ => choice(
+      $.namespace_definition,
+      $.def_form,
+
+      'fn',
+      'fn*',
+
+      'let',
+      'letfn',
+
+      'if',
+      'if-let',
+      'while',
+      'cond',
+      'case',
+
+      'try',
+      'catch',
+      'throw',
+
+      'monitor-enter',
+      'monitor-exit',
+
+      // https://stackoverflow.com/questions/30947702/what-are-all-of-clojures-special-forms
+      // 'case*',
+      // 'reify*',
+      // 'finally',
+      // 'loop*',
+      // 'do',
+      // 'letfn*',
+      // 'clojure.core/import*',
+      // 'new',
+      // 'deftype*',
+      // 'let*',
+      // 'recur',
+      // 'set!',
+      // '.',
+      // 'var',
+      // 'quote',
+    ),
+
+    namespace_definition: $ => 'ns',
+    def_form: $ => choice(
+      'def',
+      'defn',
+      'defn-',
+      'defmacro',
+    ),
+
+    threading_macro: $ => choice(
+      '->', '->>',
+      'as->',
+      'some->', 'some->>',
+      'cond->', 'cond->>'
     ),
 
     // reference: https://clojure.org/reference/reader#_symbols
