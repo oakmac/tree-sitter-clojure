@@ -1,0 +1,87 @@
+=====================================
+List - ()
+=====================================
+
+()
+("a" "b" "c")
+(:a {:a "a"})
+
+---
+
+(program
+  (list)
+  (list (string) (string) (string))
+  (list (keyword)
+        (hash_map (keyword) (string))))
+
+=====================================
+Vector - []
+=====================================
+
+[]
+[true]
+["a" :b 3]
+
+---
+
+(program
+  (vector)
+  (vector (boolean (true)))
+  (vector (string) (keyword) (number (number_long))))
+
+=====================================
+Hash Map - {}
+=====================================
+
+{}
+{:a "a"}
+{"x" :x, "y" :y, "z" :z}
+
+---
+
+(program
+  (hash_map)
+  (hash_map (keyword) (string))
+  (hash_map (string) (keyword)
+            (string) (keyword)
+            (string) (keyword))
+  )
+
+=====================================
+Namespace Map - #::{} #foo{}
+=====================================
+
+#::{}
+#::{:a 1, :b 2}
+
+#person{}
+#foo-bar{:a "a"}
+
+---
+
+(program
+  (hash_map (namespace_map))
+  (hash_map (namespace_map
+              (keyword) (number (number_long))
+              (keyword) (number (number_long))))
+
+  (hash_map (namespace_map))
+  (hash_map (namespace_map (keyword) (string)))
+  )
+
+=====================================
+Sets - #{}
+=====================================
+
+#{}
+#{true}
+#{true false}
+#{"a", "b", nil}
+
+---
+
+(program
+  (set)
+  (set (boolean (true)))
+  (set (boolean (true)) (boolean (false)))
+  (set (string) (string) (nil)))

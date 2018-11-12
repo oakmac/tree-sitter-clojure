@@ -1,0 +1,23 @@
+=====================================
+Quote - '() (quote)
+=====================================
+
+'()
+'"a"
+'("a" "b" "c")
+
+(quote ())
+(quote "a")
+(quote ("a" "b" "c"))
+
+---
+
+(program
+  (quote (list))
+  (quote (string))
+  (quote (list (string) (string) (string)))
+
+  (quote (list))
+  (quote (string))
+  (quote (list (string) (string) (string)))
+  )

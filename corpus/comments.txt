@@ -1,0 +1,77 @@
+=====================================
+Comments - semicolon ;
+=====================================
+
+; foo
+;; foo
+
+---
+
+(program
+  (comment (semicolon))
+  (comment (semicolon)))
+
+=====================================
+Comments - shebang line #!
+=====================================
+
+#!/usr/bin/env
+#! #{} :foo
+
+---
+
+(program
+  (comment (shebang_line))
+  (comment (shebang_line))
+  )
+
+=====================================
+Comments - ignore form #_
+=====================================
+
+(#_ nil true)
+#_["a" "b"]
+#_ #{"a" "b" 4}
+["a" "b" #_:z "d"]
+["a" "b" #_ #{} "d"]
+
+---
+
+(program
+  (list (comment (ignore_form)) (boolean (true)))
+  (comment (ignore_form))
+  (comment (ignore_form))
+  (vector (string)
+          (string)
+          (comment (ignore_form))
+          (string))
+  (vector (string)
+          (string)
+          (comment (ignore_form))
+          (string))
+  )
+
+=====================================
+Comments - comment macro (comment)
+=====================================
+
+(comment)
+(comment "foo")
+(comment ("a" "b" (["z" {}])) "foo")
+
+["a" (comment
+       "b") "c"]
+["a" (comment (foo ())) "c"]
+[(comment ["a" ()]) "b" ["z" (comment #{})]]
+
+---
+
+(program
+  (comment (comment_macro))
+  (comment (comment_macro))
+  (comment (comment_macro))
+
+  (vector (string) (comment (comment_macro)) (string))
+  (vector (string) (comment (comment_macro)) (string))
+  (vector (comment (comment_macro)) (string) (vector (string) (comment (comment_macro))))
+  )

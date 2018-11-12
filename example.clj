@@ -1,3 +1,5 @@
+(ns foo)
+
 true
 nil
 false

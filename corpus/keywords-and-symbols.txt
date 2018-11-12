@@ -1,0 +1,55 @@
+=====================================
+Keywords - :foo
+=====================================
+
+:a
+:foo
+:rubber-baby-buggy-bumper!
+:j3_!:7
+:HELICOPTER
+:+fiduciary+
+
+::foo
+::foo/bar
+
+---
+
+(program
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+
+  (keyword (qualified_keyword))
+  (keyword (qualified_keyword))
+  )
+
+=====================================
+Symbols - foo
+=====================================
+
+a
+foo
+rubber-baby-buggy-bumper!
+j3_!:7
+HELICOPTER
++fiduciary+
+
+a/b
+foo/bar
+
+---
+
+(program
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
+
+  (symbol (qualified_symbol))
+  (symbol (qualified_symbol))
+  )

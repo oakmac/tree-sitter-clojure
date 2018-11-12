@@ -1,0 +1,142 @@
+=====================================
+nil + booleans
+=====================================
+
+nil
+true
+false
+
+---
+
+(program
+  (nil)
+  (boolean (true))
+  (boolean (false)))
+
+=====================================
+Numbers
+=====================================
+
+42
++1
+-5
++0
+
+4.23e9
+4.23e-9
+4.23e+9
+40.3e6
+40.3e-6
+1.234
+0.123456
+.12345
+1e4
+0.2e-2
+0.0e-4
+.2e-2
+
+---
+
+(program
+  (number (number_long))
+  (number (number_long))
+  (number (number_long))
+  (number (number_long))
+
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double))
+  (number (number_double)))
+
+=====================================
+Characters - \a
+=====================================
+
+\a
+\b
+\Z
+\}
+
+\newline
+\space
+\tab
+\formfeed
+\backspace
+\return
+
+\u2202
+\u03a9
+\u00A1
+
+\o3
+\o41
+\o256
+
+---
+
+(program
+  (character)
+  (character)
+  (character)
+  (character)
+
+  (character)
+  (character)
+  (character)
+  (character)
+  (character)
+  (character)
+
+  (character)
+  (character)
+  (character)
+
+  (character)
+  (character)
+  (character))
+
+=====================================
+Strings - ""
+=====================================
+
+""
+"\""
+"abc"
+"'"
+"i am a multi-line
+ string\""
+
+---
+
+(program
+  (string)
+  (string)
+  (string)
+  (string)
+  (string)
+  )
+
+=====================================
+Regular Expressions - #""
+=====================================
+
+#""
+#"\""
+#"pattern"
+#"(\w+)\s(\w+)"
+
+---
+
+(program
+  (regex)
+  (regex)
+  (regex)
+  (regex))

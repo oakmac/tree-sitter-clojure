@@ -41,24 +41,28 @@ module.exports = grammar({
     program: $ => repeat($._anything),
 
     _anything: $ => choice(
+      $._literal,
+      $.keyword,
+      $.symbol,
+      $._collection_literal,
+      $.quote,
+      $.comment,
+    ),
+
+    _literal: $ => choice(
       $.nil,
       $.boolean,
       $.number,
       $.character,
       $.string,
-      $.regex,
+      $.regex
+    ),
 
-      $.quote,
-
-      $.keyword,
-      $.symbol,
-
+    _collection_literal: $ => choice(
       $.list,
       $.vector,
       $.hash_map,
-      $.set,
-
-      $.comment,
+      $.set
     ),
 
     // -------------------------------------------------------------------------
@@ -74,7 +78,8 @@ module.exports = grammar({
     // Numbers
     // -------------------------------------------------------------------------
 
-    number: $ => choice(
+    number: $ => $._number,
+    _number: $ => choice(
       $.number_long,
       $.number_double
       // $.number_bigint,
@@ -98,7 +103,8 @@ module.exports = grammar({
     // Character - \a
     // -------------------------------------------------------------------------
 
-    character: $ => seq('\\', choice($._normal_char, $._special_char, $._unicode_char, $._octal_char)),
+    character: $ => $._character,
+    _character: $ => seq('\\', choice($._normal_char, $._special_char, $._unicode_char, $._octal_char)),
     _normal_char: $ => /./,
     _special_char: $ => choice('newline', 'space', 'tab', 'formfeed', 'backspace', 'return'),
     _unicode_char: $ => seq('u', $._hex_char, $._hex_char, $._hex_char, $._hex_char),
@@ -110,20 +116,23 @@ module.exports = grammar({
     // Strings - ""
     // -------------------------------------------------------------------------
 
-    string: $ => seq('"', repeat(choice('\\"', /[^"]/)), '"'),
+    string: $ => $._string,
+    _string: $ => seq('"', repeat(choice('\\"', /[^"]/)), '"'),
 
     // -------------------------------------------------------------------------
     // Regular Expressions - #""
     // -------------------------------------------------------------------------
 
-    regex: $ => seq('#"', repeat(choice('\\"', /[^"\n\r]/)), '"'),
+    regex: $ => $._regex,
+    _regex: $ => seq('#"', repeat(choice('\\"', /[^"\n\r]/)), '"'),
 
     // -------------------------------------------------------------------------
     // Quote - '() (quote)
     // -------------------------------------------------------------------------
 
     // TODO: would it be useful to distinguish between these two?
-    quote: $ => choice(
+    quote: $ => $._quote,
+    _quote: $ => choice(
       seq("'", $._anything),
       seq('(quote', $._anything, ')')
     ),
@@ -132,7 +141,8 @@ module.exports = grammar({
     // Keywords - :foo
     // -------------------------------------------------------------------------
 
-    keyword: $ => choice(
+    keyword: $ => $._keyword,
+    _keyword: $ => choice(
       $._unqualified_keyword,
       $.qualified_keyword
     ),
@@ -148,7 +158,8 @@ module.exports = grammar({
     // Symbols - foo
     // -------------------------------------------------------------------------
 
-    symbol: $ => choice(
+    symbol: $ => $._symbol,
+    _symbol: $ => choice(
       $._symbol_chars,
       $.qualified_symbol
     ),
@@ -161,35 +172,39 @@ module.exports = grammar({
     // List - ()
     // -------------------------------------------------------------------------
 
-    list: $ => seq('(', repeat($._anything), ')'),
+    list: $ => $._list,
+    _list: $ => seq('(', repeat($._anything), ')'),
 
     // -------------------------------------------------------------------------
     // Vector - []
     // -------------------------------------------------------------------------
 
-    vector: $ => seq('[', repeat($._anything), ']'),
+    vector: $ => $._vector,
+    _vector: $ => seq('[', repeat($._anything), ']'),
 
     // -------------------------------------------------------------------------
     // Hash Map - {}
     // -------------------------------------------------------------------------
 
-    hash_map: $ => choice(
-      seq('{', repeat($.hash_map_kv_pair), '}'),
+    hash_map: $ => $._hash_map,
+    _hash_map: $ => choice(
+      seq('{', repeat($._hash_map_kv_pair), '}'),
       $.namespace_map
     ),
     namespace_map: $ => choice(
-      seq('#::{', repeat($.hash_map_kv_pair), '}'),
-      seq('#', $._symbol_chars, '{', repeat($.hash_map_kv_pair), '}')
+      seq('#::{', repeat($._hash_map_kv_pair), '}'),
+      seq('#', $._symbol_chars, '{', repeat($._hash_map_kv_pair), '}')
     ),
-    hash_map_kv_pair: $ => seq($.hash_map_key, $.hash_map_value),
-    hash_map_key: $ => $._anything,
-    hash_map_value: $ => $._anything,
+    _hash_map_kv_pair: $ => seq($._hash_map_key, $._hash_map_value),
+    _hash_map_key: $ => $._anything,
+    _hash_map_value: $ => $._anything,
 
     // -------------------------------------------------------------------------
     // Set - #{}
     // -------------------------------------------------------------------------
 
-    set: $ => seq('#{', repeat($._anything), '}'),
+    set: $ => $._set,
+    _set: $ => seq('#{', repeat($._anything), '}'),
 
     // -------------------------------------------------------------------------
     // Comments
@@ -198,8 +213,21 @@ module.exports = grammar({
     comment: $ => choice($.semicolon, $.shebang_line, $.ignore_form, $.comment_macro),
     semicolon: $ => seq(';', /.*/),
     shebang_line: $ => seq('#!', /.*/),
-    ignore_form: $ => seq('#_', $._anything),
-    comment_macro: $ => seq('(comment', repeat($._anything), ')')
+    ignore_form: $ => seq('#_', optional(repeat(' ')), $._one_form, repeat(' ')),
+    comment_macro: $ => seq('(comment', repeat($._one_form), ')'),
+    _one_form: $ => choice(
+      /[^\(\[\{\"]/, // <-- anything that is not an "open paren"
+      $._number,
+      $._symbol,
+      $._keyword,
+      $._paren_sequence,
+      $._bracket_sequence,
+      $._curly_brace_sequence,
+      $._string
+    ),
+    _paren_sequence: $ => seq('(', repeat($._one_form), ')'),
+    _bracket_sequence: $ => seq('[', repeat($._one_form), ']'),
+    _curly_brace_sequence: $ => seq(optional('#'), '{', repeat($._one_form), '}')
   }
 })
 
