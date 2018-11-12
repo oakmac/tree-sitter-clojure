@@ -45,6 +45,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "symbol"
+        },
+        {
+          "type": "SYMBOL",
           "name": "list"
         },
         {
@@ -840,6 +844,40 @@
       "type": "PATTERN",
       "value": "[a-zA-Z0-9-_!+:]+"
     },
+    "symbol": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_symbol_chars"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "qualified_symbol"
+        }
+      ]
+    },
+    "_symbol_chars": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z\\*\\+\\!\\-\\_\\?][a-zA-Z0-9\\*\\+\\!\\-\\_\\?\\'\\:]*"
+    },
+    "qualified_symbol": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_symbol_chars"
+        },
+        {
+          "type": "STRING",
+          "value": "/"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_symbol_chars"
+        }
+      ]
+    },
     "list": {
       "type": "SEQ",
       "members": [
@@ -982,10 +1020,6 @@
     "hash_map_value": {
       "type": "SYMBOL",
       "name": "_anything"
-    },
-    "_symbol_chars": {
-      "type": "PATTERN",
-      "value": "[a-zA-Z\\*\\+\\!\\-\\_\\?][a-zA-Z0-9\\*\\+\\!\\-\\_\\'\\?]*"
     },
     "set": {
       "type": "SEQ",

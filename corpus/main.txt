@@ -192,6 +192,34 @@ Keywords - :foo
   )
 
 =====================================
+Symbols - foo
+=====================================
+
+a
+foo
+rubber-baby-buggy-bumper!
+j3_!:7
+HELICOPTER
++fiduciary+
+
+a/b
+foo/bar
+
+---
+
+(program
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
+
+  (symbol (qualified_symbol))
+  (symbol (qualified_symbol))
+  )
+
+=====================================
 List - ()
 =====================================
 

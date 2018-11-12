@@ -53,6 +53,7 @@ module.exports = grammar({
       $.quote,
 
       $.keyword,
+      $.symbol,
 
       $.list,
       $.vector,
@@ -144,6 +145,19 @@ module.exports = grammar({
     _keyword_chars: $ => /[a-zA-Z0-9-_!+:]+/,
 
     // -------------------------------------------------------------------------
+    // Symbols - foo
+    // -------------------------------------------------------------------------
+
+    symbol: $ => choice(
+      $._symbol_chars,
+      $.qualified_symbol
+    ),
+
+    // reference: https://clojure.org/reference/reader#_symbols
+    _symbol_chars: $ =>   /[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\?\'\:]*/,
+    qualified_symbol: $ => seq($._symbol_chars, '/', $._symbol_chars),
+
+    // -------------------------------------------------------------------------
     // List - ()
     // -------------------------------------------------------------------------
 
@@ -170,9 +184,6 @@ module.exports = grammar({
     hash_map_kv_pair: $ => seq($.hash_map_key, $.hash_map_value),
     hash_map_key: $ => $._anything,
     hash_map_value: $ => $._anything,
-
-    // reference: https://clojure.org/reference/reader#_symbols
-    _symbol_chars: $ => /[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\'\?]*/,
 
     // -------------------------------------------------------------------------
     // Set - #{}
