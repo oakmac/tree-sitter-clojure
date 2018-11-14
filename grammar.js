@@ -8,6 +8,7 @@
 // http://cljs.github.io/api/syntax/
 
 // TODO:
+// functions
 // escape characters in strings?
 // numbers
 // - BigInt
@@ -47,6 +48,7 @@ module.exports = grammar({
       $._collection_literal,
       $.quote,
       $.comment,
+      $.special_form,
     ),
 
     _literal: $ => choice(
@@ -160,60 +162,18 @@ module.exports = grammar({
 
     symbol: $ => $._symbol,
     _symbol: $ => choice(
-      $.special_form,
       $.threading_macro,
       $._symbol_chars,
       $.qualified_symbol
     ),
 
-    special_form: $ => choice(
-      $.namespace_definition,
-      $.def_form,
-
-      'fn',
-      'fn*',
-
-      'let',
-      'letfn',
-
-      'if',
-      'if-let',
-      'while',
-      'cond',
-      'case',
-
-      'try',
-      'catch',
-      'throw',
-
-      'monitor-enter',
-      'monitor-exit',
-
-      // https://stackoverflow.com/questions/30947702/what-are-all-of-clojures-special-forms
-      // 'case*',
-      // 'reify*',
-      // 'finally',
-      // 'loop*',
-      // 'do',
-      // 'letfn*',
-      // 'clojure.core/import*',
-      // 'new',
-      // 'deftype*',
-      // 'let*',
-      // 'recur',
-      // 'set!',
-      // '.',
-      // 'var',
-      // 'quote',
-    ),
-
-    namespace_definition: $ => 'ns',
-    def_form: $ => choice(
-      'def',
-      'defn',
-      'defn-',
-      'defmacro',
-    ),
+    // namespace_definition: $ => 'ns',
+    // def_form: $ => choice(
+    //   'def',
+    //   'defn',
+    //   'defn-',
+    //   'defmacro',
+    // ),
 
     threading_macro: $ => choice(
       '->', '->>',
@@ -285,7 +245,37 @@ module.exports = grammar({
     ),
     _paren_sequence: $ => seq('(', repeat($._one_form), ')'),
     _bracket_sequence: $ => seq('[', repeat($._one_form), ']'),
-    _curly_brace_sequence: $ => seq(optional('#'), '{', repeat($._one_form), '}')
+    _curly_brace_sequence: $ => seq(optional('#'), '{', repeat($._one_form), '}'),
+
+    // -------------------------------------------------------------------------
+    // Special Forms
+    // -------------------------------------------------------------------------
+
+    special_form: $ => choice(
+      $.function,
+      // TODO: more here
+    ),
+
+    // -------------------------------------------------------------------------
+    // Functions
+    // -------------------------------------------------------------------------
+
+    function: $ => choice($.named_function, $.anonymous_function, $.shorthand_function),
+
+    anonymous_function: $ => seq('(', 'fn', optional($.function_name), choice($._single_arity_fn, $._multi_arity_fn), ')'),
+    function_name: $ => $.symbol,
+    _single_arity_fn: $ => seq($.params, optional($.function_body)),
+    _multi_arity_fn: $ => repeat1(seq('(', $._single_arity_fn, ')')),
+
+    // NOTE: I don't think we need to handle condition-map here explicitly; it's just considered
+    //       a (hash-map) inside $._anything
+    function_body: $ => repeat1($._anything),
+
+    // TODO: we can probably be more specific here than just "vector"
+    params: $ => $.vector,
+
+    named_function: $ => 'TODO: write me',
+    shorthand_function: $ => 'TODO: write me 2'
   }
 })
 

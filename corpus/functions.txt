@@ -1,0 +1,75 @@
+=====================================
+anonymous fn
+=====================================
+
+(fn [])
+
+(    fn      [y]      nil     )
+
+(fn
+  ([x] x)
+  ([x y] (+ x y)))
+
+---
+
+(program
+  (special_form
+    (function
+      (anonymous_function
+        (params (vector)))))
+
+  (special_form
+    (function
+      (anonymous_function
+        (params (vector (symbol)))
+        (function_body (nil)))))
+
+  (special_form
+    (function
+      (anonymous_function
+        (params (vector (symbol)))
+        (function_body (symbol))
+
+        (params (vector (symbol) (symbol)))
+        (function_body (list (symbol) (symbol) (symbol))))))
+  )
+
+=====================================
+anonymous fn with name
+=====================================
+
+(fn foo [])
+
+(    fn   bar   [y]      nil     )
+
+(fn biz
+  ([x] x)
+  ([x y] (+ x y)))
+
+---
+
+(program
+  (special_form
+    (function
+      (anonymous_function
+        (function_name (symbol))
+        (params (vector)))))
+
+  (special_form
+    (function
+      (anonymous_function
+        (function_name (symbol))
+        (params (vector (symbol)))
+        (function_body (nil)))))
+
+  (special_form
+    (function
+      (anonymous_function
+        (function_name (symbol))
+
+        (params (vector (symbol)))
+        (function_body (symbol))
+
+        (params (vector (symbol) (symbol)))
+        (function_body (list (symbol) (symbol) (symbol))))))
+  )

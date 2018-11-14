@@ -34,6 +34,10 @@
         {
           "type": "SYMBOL",
           "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "special_form"
         }
       ]
     },
@@ -921,10 +925,6 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "special_form"
-        },
-        {
-          "type": "SYMBOL",
           "name": "threading_macro"
         },
         {
@@ -934,100 +934,6 @@
         {
           "type": "SYMBOL",
           "name": "qualified_symbol"
-        }
-      ]
-    },
-    "special_form": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "namespace_definition"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "def_form"
-        },
-        {
-          "type": "STRING",
-          "value": "fn"
-        },
-        {
-          "type": "STRING",
-          "value": "fn*"
-        },
-        {
-          "type": "STRING",
-          "value": "let"
-        },
-        {
-          "type": "STRING",
-          "value": "letfn"
-        },
-        {
-          "type": "STRING",
-          "value": "if"
-        },
-        {
-          "type": "STRING",
-          "value": "if-let"
-        },
-        {
-          "type": "STRING",
-          "value": "while"
-        },
-        {
-          "type": "STRING",
-          "value": "cond"
-        },
-        {
-          "type": "STRING",
-          "value": "case"
-        },
-        {
-          "type": "STRING",
-          "value": "try"
-        },
-        {
-          "type": "STRING",
-          "value": "catch"
-        },
-        {
-          "type": "STRING",
-          "value": "throw"
-        },
-        {
-          "type": "STRING",
-          "value": "monitor-enter"
-        },
-        {
-          "type": "STRING",
-          "value": "monitor-exit"
-        }
-      ]
-    },
-    "namespace_definition": {
-      "type": "STRING",
-      "value": "ns"
-    },
-    "def_form": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "def"
-        },
-        {
-          "type": "STRING",
-          "value": "defn"
-        },
-        {
-          "type": "STRING",
-          "value": "defn-"
-        },
-        {
-          "type": "STRING",
-          "value": "defmacro"
         }
       ]
     },
@@ -1474,6 +1380,138 @@
           "value": "}"
         }
       ]
+    },
+    "special_form": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "function"
+        }
+      ]
+    },
+    "function": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "named_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "anonymous_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "shorthand_function"
+        }
+      ]
+    },
+    "anonymous_function": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "STRING",
+          "value": "fn"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "function_name"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_single_arity_fn"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_multi_arity_fn"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "function_name": {
+      "type": "SYMBOL",
+      "name": "symbol"
+    },
+    "_single_arity_fn": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "params"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "function_body"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "_multi_arity_fn": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "("
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_single_arity_fn"
+          },
+          {
+            "type": "STRING",
+            "value": ")"
+          }
+        ]
+      }
+    },
+    "function_body": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_anything"
+      }
+    },
+    "params": {
+      "type": "SYMBOL",
+      "name": "vector"
+    },
+    "named_function": {
+      "type": "STRING",
+      "value": "TODO: write me"
+    },
+    "shorthand_function": {
+      "type": "STRING",
+      "value": "TODO: write me 2"
     }
   },
   "extras": [
