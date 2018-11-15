@@ -175,3 +175,40 @@ defn with docstring and attr-map
       (params (vector))
       (function_body (number (number_long)))))
   )
+
+=====================================
+defn with metadata
+=====================================
+
+(defn ^:private ^Boolean always-true
+  "private function that returns a boolean value"
+  []
+  true)
+
+(defn ^{:foo "bar"} always-false
+  []
+  false)
+
+---
+
+(program
+  (function
+    (defn
+      (metadata
+        (metadata_shorthand)
+        (metadata_shorthand))
+      (function_name (symbol))
+      (docstring (string))
+      (params (vector))
+      (function_body
+        (boolean (true)))))
+
+  (function
+    (defn
+      (metadata
+        (hash_map (keyword) (string)))
+      (function_name (symbol))
+      (params (vector))
+      (function_body
+        (boolean (false)))))
+  )

@@ -60,12 +60,12 @@ module.exports = grammar({
       $._collection_literal
     ),
 
-    _collection_literal: $ => choice(
+    _collection_literal: $ => seq(optional($.metadata), choice(
       $.list,
       $.vector,
       $.hash_map,
       $.set
-    ),
+    )),
 
     // -------------------------------------------------------------------------
     // nil + booleans
@@ -259,8 +259,8 @@ module.exports = grammar({
     _single_arity_fn: $ => seq($.params, optional($.function_body)),
     _multi_arity_fn: $ => repeat1(seq('(', $._single_arity_fn, ')')),
 
-    // NOTE: I don't think we need to handle condition-map here explicitly; it's just considered
-    //       a (hash-map) inside $._anything
+    // NOTE: I don't think we need to handle condition-map here explicitly
+    //       it will just be detected as (hash_map) inside the body
     function_body: $ => repeat1($._anything),
 
     // TODO: we can probably be more specific here than just "vector"
@@ -270,9 +270,27 @@ module.exports = grammar({
     shorthand_fn: $ => seq('#(', repeat(choice($.shorthand_fn_arg, $._anything)), ')'),
     shorthand_fn_arg: $ => /%[1-9&]*/,
 
-    defn: $ => seq('(', choice('defn', 'defn-'), $.function_name, optional($.docstring), optional($.attr_map), $._after_the_fn_name, ')'),
+    defn: $ => seq('(', choice('defn', 'defn-'),
+                        optional($.metadata),
+                        $.function_name,
+                        optional($.docstring),
+                        optional($.attr_map),
+                        $._after_the_fn_name, ')'),
     docstring: $ => $.string,
     attr_map: $ => $.hash_map,
+
+    // -------------------------------------------------------------------------
+    // Metadata
+    // -------------------------------------------------------------------------
+
+    metadata: $ => choice(repeat1($.metadata_shorthand), $._metadata_map),
+    _metadata_map: $ => seq('^', $.hash_map),
+    metadata_shorthand: $ => choice(
+      seq('^:', $._keyword_chars),
+      seq('^"', repeat(choice('\\"', /[^"]/)), '"'),
+      seq('^', $._symbol_chars)
+    ),
+
   }
 })
 

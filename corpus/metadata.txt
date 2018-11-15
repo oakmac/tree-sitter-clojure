@@ -1,0 +1,24 @@
+=====================================
+Metadata
+=====================================
+
+^{:a 1 :b 2} ["a" "b"]
+
+^:private ^:dynamic ^"foo" ^String #{}
+
+
+---
+
+(program
+  (metadata
+    (hash_map (keyword) (number (number_long))
+              (keyword) (number (number_long))))
+  (vector (string) (string))
+
+  (metadata
+    (metadata_shorthand)
+    (metadata_shorthand)
+    (metadata_shorthand)
+    (metadata_shorthand))
+  (set)
+)
