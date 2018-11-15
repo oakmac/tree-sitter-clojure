@@ -25,7 +25,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_collection_literal"
+          "name": "function"
         },
         {
           "type": "SYMBOL",
@@ -34,10 +34,6 @@
         {
           "type": "SYMBOL",
           "name": "comment"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "function"
         }
       ]
     },
@@ -67,6 +63,10 @@
         {
           "type": "SYMBOL",
           "name": "regex"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_collection_literal"
         }
       ]
     },
@@ -1386,19 +1386,19 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "anonymous_function"
+          "name": "anonymous_fn"
         },
         {
           "type": "SYMBOL",
-          "name": "shorthand_function"
+          "name": "shorthand_fn"
         },
         {
           "type": "SYMBOL",
-          "name": "defn_function"
+          "name": "defn"
         }
       ]
     },
-    "anonymous_function": {
+    "anonymous_fn": {
       "type": "SEQ",
       "members": [
         {
@@ -1422,21 +1422,25 @@
           ]
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_single_arity_fn"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_multi_arity_fn"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_after_the_fn_name"
         },
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "_after_the_fn_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_single_arity_fn"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_multi_arity_fn"
         }
       ]
     },
@@ -1496,7 +1500,7 @@
       "type": "SYMBOL",
       "name": "vector"
     },
-    "shorthand_function": {
+    "shorthand_fn": {
       "type": "SEQ",
       "members": [
         {
@@ -1510,7 +1514,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "shorthand_function_arg"
+                "name": "shorthand_fn_arg"
               },
               {
                 "type": "SYMBOL",
@@ -1525,13 +1529,75 @@
         }
       ]
     },
-    "shorthand_function_arg": {
+    "shorthand_fn_arg": {
       "type": "PATTERN",
       "value": "%[1-9&]*"
     },
-    "defn_function": {
-      "type": "STRING",
-      "value": "TODO: write me"
+    "defn": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "defn"
+            },
+            {
+              "type": "STRING",
+              "value": "defn-"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_name"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "docstring"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attr_map"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_after_the_fn_name"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "docstring": {
+      "type": "SYMBOL",
+      "name": "string"
+    },
+    "attr_map": {
+      "type": "SYMBOL",
+      "name": "hash_map"
     }
   },
   "extras": [

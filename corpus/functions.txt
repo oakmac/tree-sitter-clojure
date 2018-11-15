@@ -14,16 +14,16 @@ anonymous fn
 
 (program
   (function
-    (anonymous_function
+    (anonymous_fn
       (params (vector))))
 
   (function
-    (anonymous_function
+    (anonymous_fn
       (params (vector (symbol)))
       (function_body (nil))))
 
   (function
-    (anonymous_function
+    (anonymous_fn
       (params (vector (symbol)))
       (function_body (symbol))
 
@@ -47,18 +47,18 @@ anonymous fn with name
 
 (program
   (function
-    (anonymous_function
+    (anonymous_fn
       (function_name (symbol))
       (params (vector))))
 
   (function
-    (anonymous_function
+    (anonymous_fn
       (function_name (symbol))
       (params (vector (symbol)))
       (function_body (nil))))
 
   (function
-    (anonymous_function
+    (anonymous_fn
       (function_name (symbol))
 
       (params (vector (symbol)))
@@ -83,22 +83,95 @@ function shorthand
 ---
 
 (program
-  (function (shorthand_function))
+  (function (shorthand_fn))
 
   (function
-    (shorthand_function
+    (shorthand_fn
       (symbol) (vector) (string)))
 
   (function
-    (shorthand_function
-      (symbol) (shorthand_function_arg) (symbol)))
+    (shorthand_fn
+      (symbol) (shorthand_fn_arg) (symbol)))
 
   (function
-    (shorthand_function
+    (shorthand_fn
       (symbol)
       (vector)
-      (shorthand_function_arg)
-      (shorthand_function_arg)
-      (shorthand_function_arg)
-      (shorthand_function_arg)))
+      (shorthand_fn_arg)
+      (shorthand_fn_arg)
+      (shorthand_fn_arg)
+      (shorthand_fn_arg)))
+  )
+
+=====================================
+defn, defn-
+=====================================
+
+(defn foo [])
+
+(defn- foo [x] 4)
+
+(defn foo
+  ([] "zero arity")
+  ([x y] "multi arity"))
+
+---
+
+(program
+  (function
+    (defn
+      (function_name (symbol))
+      (params (vector))))
+
+  (function
+    (defn
+      (function_name (symbol))
+      (params (vector (symbol)))
+      (function_body (number (number_long)))))
+
+  (function
+    (defn
+      (function_name (symbol))
+
+      (params (vector))
+      (function_body (string))
+
+      (params (vector (symbol) (symbol)))
+      (function_body (string))))
+  )
+
+=====================================
+defn with docstring and attr-map
+=====================================
+
+(defn foo "foo" [])
+
+(defn flatten
+  "Takes any nested combination of sequential things (lists, vectors,
+  etc.) and returns their contents as a single, flat sequence.
+  (flatten nil) returns an empty sequence."
+  {:added "1.2"
+   :static true}
+  []
+  7)
+
+---
+
+(program
+  (function
+    (defn
+      (function_name (symbol))
+      (docstring (string))
+      (params (vector))))
+
+  (function
+    (defn
+      (function_name (symbol))
+      (docstring (string))
+      (attr_map
+        (hash_map (keyword) (string)
+                  (keyword) (boolean (true))))
+
+      (params (vector))
+      (function_body (number (number_long)))))
   )

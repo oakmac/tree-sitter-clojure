@@ -45,10 +45,9 @@ module.exports = grammar({
       $._literal,
       $.keyword,
       $.symbol,
-      $._collection_literal,
+      $.function,
       $.quote,
       $.comment,
-      $.function,
     ),
 
     _literal: $ => choice(
@@ -57,7 +56,8 @@ module.exports = grammar({
       $.number,
       $.character,
       $.string,
-      $.regex
+      $.regex,
+      $._collection_literal
     ),
 
     _collection_literal: $ => choice(
@@ -251,9 +251,10 @@ module.exports = grammar({
     // Functions
     // -------------------------------------------------------------------------
 
-    function: $ => choice($.anonymous_function, $.shorthand_function, $.defn_function),
+    function: $ => choice($.anonymous_fn, $.shorthand_fn, $.defn),
 
-    anonymous_function: $ => seq('(', 'fn', optional($.function_name), choice($._single_arity_fn, $._multi_arity_fn), ')'),
+    anonymous_fn: $ => seq('(', 'fn', optional($.function_name), $._after_the_fn_name, ')'),
+    _after_the_fn_name: $ => choice($._single_arity_fn, $._multi_arity_fn),
     function_name: $ => $.symbol,
     _single_arity_fn: $ => seq($.params, optional($.function_body)),
     _multi_arity_fn: $ => repeat1(seq('(', $._single_arity_fn, ')')),
@@ -265,10 +266,13 @@ module.exports = grammar({
     // TODO: we can probably be more specific here than just "vector"
     params: $ => $.vector,
 
-    shorthand_function: $ => seq('#(', repeat(choice($.shorthand_function_arg, $._anything)), ')'),
-    shorthand_function_arg: $ => /%[1-9&]*/,
+    // TODO: need to disallow nested #() forms here
+    shorthand_fn: $ => seq('#(', repeat(choice($.shorthand_fn_arg, $._anything)), ')'),
+    shorthand_fn_arg: $ => /%[1-9&]*/,
 
-    defn_function: $ => 'TODO: write me',
+    defn: $ => seq('(', choice('defn', 'defn-'), $.function_name, optional($.docstring), optional($.attr_map), $._after_the_fn_name, ')'),
+    docstring: $ => $.string,
+    attr_map: $ => $.hash_map,
   }
 })
 
