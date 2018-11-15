@@ -15,7 +15,6 @@
 // - Ratio
 // - hex? octal? etc https://stackoverflow.com/questions/41489239/octal-number-handling-in-clojure
 // - https://cljs.github.io/api/syntax/number
-// interop
 // special forms
 // def
 // defmacro
@@ -23,9 +22,11 @@
 // ns
 // reader conditional
 // symbolic value
+// var quote
 // splicing reader conditional
 // tagged literals
 // Should we add tests for (ERROR) nodes in some cases?
+// deref @
 
 const DIGITS = token(sep1(/[0-9]+/, /_+/))
 
@@ -42,6 +43,7 @@ module.exports = grammar({
     _anything: $ => choice(
       $._literals,
       $.symbol,
+      $.interop,
       $._functions,
       $.quote,
       $.comment,
@@ -184,6 +186,16 @@ module.exports = grammar({
     // reference: https://clojure.org/reference/reader#_symbols
     _symbol_chars: $ =>   /[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\?\'\:]*/,
     qualified_symbol: $ => seq($._symbol_chars, '/', $._symbol_chars),
+
+    // -------------------------------------------------------------------------
+    // Interop - .foo .-foo java.blah.Klass.
+    // -------------------------------------------------------------------------
+
+    interop: $ => choice($.member_access, $.field_access, $.new_class),
+    member_access: $ => /\.[a-zA-Z_]\w*/,
+    field_access: $ => /\.-[a-zA-Z_]\w*/,
+    new_class: $ => /([a-zA-Z_]\w*\.)(\w+\.)*/,
+    // TODO: "new" symbol, single dot, double dot
 
     // -------------------------------------------------------------------------
     // List - ()

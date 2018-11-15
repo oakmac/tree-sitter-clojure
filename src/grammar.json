@@ -21,6 +21,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "interop"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_functions"
         },
         {
@@ -1027,6 +1031,35 @@
           "name": "_symbol_chars"
         }
       ]
+    },
+    "interop": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "member_access"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "field_access"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "new_class"
+        }
+      ]
+    },
+    "member_access": {
+      "type": "PATTERN",
+      "value": "\\.[a-zA-Z_]\\w*"
+    },
+    "field_access": {
+      "type": "PATTERN",
+      "value": "\\.-[a-zA-Z_]\\w*"
+    },
+    "new_class": {
+      "type": "PATTERN",
+      "value": "([a-zA-Z_]\\w*\\.)(\\w+\\.)*"
     },
     "list": {
       "type": "SYMBOL",

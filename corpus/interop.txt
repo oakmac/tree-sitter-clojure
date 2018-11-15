@@ -1,0 +1,26 @@
+=====================================
+Interop - member + field access
+=====================================
+
+(.toUpperCase "fred")
+(.getName String)
+(.-x (java.awt.Point. 1 2))
+
+---
+
+(program
+  (list
+    (interop (member_access))
+    (string))
+
+  (list
+    (interop (member_access))
+    (symbol))
+
+  (list
+    (interop (field_access))
+    (list
+      (interop (new_class))
+      (number (number_long))
+      (number (number_long))))
+  )
