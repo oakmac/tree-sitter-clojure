@@ -1,0 +1,27 @@
+=====================================
+Syntax quote
+=====================================
+
+`(foo ~x)
+`(foo ~@y)
+`(foo z#)
+
+---
+
+(program
+
+  (syntax-quote
+    (list
+      (symbol)
+      (unquote (symbol))))
+
+  (syntax-quote
+    (list
+      (symbol)
+      (unquote-splice
+        (symbol))))
+
+  (syntax-quote
+    (list
+      (symbol)
+      (auto-gensym))))
