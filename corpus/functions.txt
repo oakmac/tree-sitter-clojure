@@ -13,22 +13,19 @@ anonymous fn
 ---
 
 (program
-  (function
-    (anonymous_fn
-      (params (vector))))
+  (anonymous_function
+    (params (vector)))
 
-  (function
-    (anonymous_fn
-      (params (vector (symbol)))
-      (function_body (nil))))
+  (anonymous_function
+    (params (vector (symbol)))
+    (function_body (nil)))
 
-  (function
-    (anonymous_fn
-      (params (vector (symbol)))
-      (function_body (symbol))
+  (anonymous_function
+    (params (vector (symbol)))
+    (function_body (symbol))
 
-      (params (vector (symbol) (symbol)))
-      (function_body (list (symbol) (symbol) (symbol)))))
+    (params (vector (symbol) (symbol)))
+    (function_body (list (symbol) (symbol) (symbol))))
   )
 
 =====================================
@@ -46,26 +43,23 @@ anonymous fn with name
 ---
 
 (program
-  (function
-    (anonymous_fn
-      (function_name (symbol))
-      (params (vector))))
+  (anonymous_function
+    (function_name (symbol))
+    (params (vector)))
 
-  (function
-    (anonymous_fn
-      (function_name (symbol))
-      (params (vector (symbol)))
-      (function_body (nil))))
+  (anonymous_function
+    (function_name (symbol))
+    (params (vector (symbol)))
+    (function_body (nil)))
 
-  (function
-    (anonymous_fn
-      (function_name (symbol))
+  (anonymous_function
+    (function_name (symbol))
 
-      (params (vector (symbol)))
-      (function_body (symbol))
+    (params (vector (symbol)))
+    (function_body (symbol))
 
-      (params (vector (symbol) (symbol)))
-      (function_body (list (symbol) (symbol) (symbol)))))
+    (params (vector (symbol) (symbol)))
+    (function_body (list (symbol) (symbol) (symbol))))
   )
 
 =====================================
@@ -80,27 +74,28 @@ function shorthand
 
 #(conj [] %1 %2 %3 %&)
 
+#(foo #())
+
 ---
 
 (program
-  (function (shorthand_fn))
+  (shorthand_function)
 
-  (function
-    (shorthand_fn
-      (symbol) (vector) (string)))
+  (shorthand_function
+    (symbol) (vector) (string))
 
-  (function
-    (shorthand_fn
-      (symbol) (shorthand_fn_arg) (symbol)))
+  (shorthand_function
+    (symbol) (shorthand_function_arg) (symbol))
 
-  (function
-    (shorthand_fn
-      (symbol)
-      (vector)
-      (shorthand_fn_arg)
-      (shorthand_fn_arg)
-      (shorthand_fn_arg)
-      (shorthand_fn_arg)))
+  (shorthand_function
+    (symbol)
+    (vector)
+    (shorthand_function_arg)
+    (shorthand_function_arg)
+    (shorthand_function_arg)
+    (shorthand_function_arg))
+
+  (shorthand_function (symbol) (ERROR)) (ERROR)
   )
 
 =====================================
@@ -118,26 +113,23 @@ defn, defn-
 ---
 
 (program
-  (function
-    (defn
-      (function_name (symbol))
-      (params (vector))))
+  (defn
+    (function_name (symbol))
+    (params (vector)))
 
-  (function
-    (defn
-      (function_name (symbol))
-      (params (vector (symbol)))
-      (function_body (number (number_long)))))
+  (defn
+    (function_name (symbol))
+    (params (vector (symbol)))
+    (function_body (number (number_long))))
 
-  (function
-    (defn
-      (function_name (symbol))
+  (defn
+    (function_name (symbol))
 
-      (params (vector))
-      (function_body (string))
+    (params (vector))
+    (function_body (string))
 
-      (params (vector (symbol) (symbol)))
-      (function_body (string))))
+    (params (vector (symbol) (symbol)))
+    (function_body (string)))
   )
 
 =====================================
@@ -158,22 +150,20 @@ defn with docstring and attr-map
 ---
 
 (program
-  (function
-    (defn
-      (function_name (symbol))
-      (docstring (string))
-      (params (vector))))
+  (defn
+    (function_name (symbol))
+    (docstring (string))
+    (params (vector)))
 
-  (function
-    (defn
-      (function_name (symbol))
-      (docstring (string))
-      (attr_map
-        (hash_map (keyword) (string)
-                  (keyword) (boolean (true))))
+  (defn
+    (function_name (symbol))
+    (docstring (string))
+    (attr_map
+      (hash_map (keyword) (string)
+                (keyword) (boolean (true))))
 
-      (params (vector))
-      (function_body (number (number_long)))))
+    (params (vector))
+    (function_body (number (number_long))))
   )
 
 =====================================
@@ -192,23 +182,21 @@ defn with metadata
 ---
 
 (program
-  (function
-    (defn
-      (metadata
-        (metadata_shorthand)
-        (metadata_shorthand))
-      (function_name (symbol))
-      (docstring (string))
-      (params (vector))
-      (function_body
-        (boolean (true)))))
+  (defn
+    (metadata
+      (metadata_shorthand)
+      (metadata_shorthand))
+    (function_name (symbol))
+    (docstring (string))
+    (params (vector))
+    (function_body
+      (boolean (true))))
 
-  (function
-    (defn
-      (metadata
-        (hash_map (keyword) (string)))
-      (function_name (symbol))
-      (params (vector))
-      (function_body
-        (boolean (false)))))
+  (defn
+    (metadata
+      (hash_map (keyword) (string)))
+    (function_name (symbol))
+    (params (vector))
+    (function_body
+      (boolean (false))))
   )

@@ -43,25 +43,55 @@ module.exports = grammar({
     program: $ => repeat($._anything),
 
     _anything: $ => choice(
-      $._literal,
-      $.keyword,
+      $._literals,
       $.symbol,
-      $.function,
+      $._functions,
       $.quote,
       $.comment,
+      $.syntax_quote,
     ),
 
-    _literal: $ => choice(
+    // same as _anything, except:
+    // - no function shorthand
+    // - allow shorthand_function_arg
+    _anything_inside_function_shorthand: $ => choice(
+      $._literals,
+      $.symbol,
+      $.anonymous_function,
+      $.defn,
+      $.quote,
+      $.comment,
+      $.syntax_quote,
+
+      $.shorthand_function_arg,
+    ),
+
+    // same as _anything, except:
+    // - no syntax quote
+    // - allow unquote and unquote_splice
+    _anything_inside_syntax_quote: $ => choice(
+      $._literals,
+      $.symbol,
+      $._functions,
+      $.quote,
+      $.comment,
+
+      $.unquote,
+      $.unquote_splice,
+    ),
+
+    _literals: $ => choice(
       $.nil,
       $.boolean,
       $.number,
       $.character,
       $.string,
       $.regex,
-      $._collection_literal
+      $.keyword,
+      $._collection_literals
     ),
 
-    _collection_literal: $ => seq(optional($.metadata), choice(
+    _collection_literals: $ => seq(optional($.metadata), choice(
       $.list,
       $.vector,
       $.hash_map,
@@ -244,9 +274,9 @@ module.exports = grammar({
     // Functions
     // -------------------------------------------------------------------------
 
-    function: $ => choice($.anonymous_fn, $.shorthand_fn, $.defn),
+    _functions: $ => choice($.anonymous_function, $.shorthand_function, $.defn),
 
-    anonymous_fn: $ => seq('(', 'fn', optional($.function_name), $._after_the_fn_name, ')'),
+    anonymous_function: $ => seq('(', 'fn', optional($.function_name), $._after_the_fn_name, ')'),
     _after_the_fn_name: $ => choice($._single_arity_fn, $._multi_arity_fn),
     function_name: $ => $.symbol,
     _single_arity_fn: $ => seq($.params, optional($.function_body)),
@@ -259,9 +289,8 @@ module.exports = grammar({
     // TODO: we can probably be more specific here than just "vector"
     params: $ => $.vector,
 
-    // TODO: need to disallow nested #() forms here
-    shorthand_fn: $ => seq('#(', repeat(choice($.shorthand_fn_arg, $._anything)), ')'),
-    shorthand_fn_arg: $ => /%[1-9&]*/,
+    shorthand_function: $ => seq('#(', repeat($._anything_inside_function_shorthand), ')'),
+    shorthand_function_arg: $ => /%[1-9&]*/,
 
     defn: $ => seq('(', choice('defn', 'defn-'),
                         optional($.metadata),
@@ -285,6 +314,13 @@ module.exports = grammar({
       seq('^', $._symbol_chars)
     ),
 
+    // -------------------------------------------------------------------------
+    // Syntax Quote and friends
+    // -------------------------------------------------------------------------
+
+    syntax_quote: $ => seq('`(', repeat($._anything_inside_syntax_quote), ')'),
+    unquote: $ => "asdfasdfdsfadsfadsfadsf",
+    unquote_splice: $ => 'qwerqwerqwerqwerwerqerew',
   }
 })
 

@@ -18,10 +18,10 @@ Syntax quote
   (syntax-quote
     (list
       (symbol)
-      (unquote-splice
-        (symbol))))
+      (unquote-splice (symbol))))
 
   (syntax-quote
     (list
       (symbol)
-      (auto-gensym))))
+      (auto-gensym)))
+  )

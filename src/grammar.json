@@ -13,11 +13,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_literal"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "keyword"
+          "name": "_literals"
         },
         {
           "type": "SYMBOL",
@@ -25,7 +21,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "function"
+          "name": "_functions"
         },
         {
           "type": "SYMBOL",
@@ -34,10 +30,84 @@
         {
           "type": "SYMBOL",
           "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "syntax_quote"
         }
       ]
     },
-    "_literal": {
+    "_anything_inside_function_shorthand": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_literals"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "anonymous_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "defn"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quote"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "syntax_quote"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "shorthand_function_arg"
+        }
+      ]
+    },
+    "_anything_inside_syntax_quote": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_literals"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_functions"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quote"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unquote"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unquote_splice"
+        }
+      ]
+    },
+    "_literals": {
       "type": "CHOICE",
       "members": [
         {
@@ -66,11 +136,15 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_collection_literal"
+          "name": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_collection_literals"
         }
       ]
     },
-    "_collection_literal": {
+    "_collection_literals": {
       "type": "SEQ",
       "members": [
         {
@@ -1398,16 +1472,16 @@
         }
       ]
     },
-    "function": {
+    "_functions": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "anonymous_fn"
+          "name": "anonymous_function"
         },
         {
           "type": "SYMBOL",
-          "name": "shorthand_fn"
+          "name": "shorthand_function"
         },
         {
           "type": "SYMBOL",
@@ -1415,7 +1489,7 @@
         }
       ]
     },
-    "anonymous_fn": {
+    "anonymous_function": {
       "type": "SEQ",
       "members": [
         {
@@ -1517,7 +1591,7 @@
       "type": "SYMBOL",
       "name": "vector"
     },
-    "shorthand_fn": {
+    "shorthand_function": {
       "type": "SEQ",
       "members": [
         {
@@ -1527,17 +1601,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "shorthand_fn_arg"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_anything"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_anything_inside_function_shorthand"
           }
         },
         {
@@ -1546,7 +1611,7 @@
         }
       ]
     },
-    "shorthand_fn_arg": {
+    "shorthand_function_arg": {
       "type": "PATTERN",
       "value": "%[1-9&]*"
     },
@@ -1716,6 +1781,34 @@
           ]
         }
       ]
+    },
+    "syntax_quote": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "`("
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_anything_inside_syntax_quote"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "unquote": {
+      "type": "STRING",
+      "value": "asdfasdfdsfadsfadsfadsf"
+    },
+    "unquote_splice": {
+      "type": "STRING",
+      "value": "qwerqwerqwerqwerwerqerew"
     }
   },
   "extras": [
