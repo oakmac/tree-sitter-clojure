@@ -15,7 +15,7 @@
 // - Ratio
 // - hex? octal? etc https://stackoverflow.com/questions/41489239/octal-number-handling-in-clojure
 // - https://cljs.github.io/api/syntax/number
-// syntax quote
+// interop
 // special forms
 // def
 // defmacro
@@ -23,9 +23,6 @@
 // ns
 // reader conditional
 // symbolic value
-// unquote
-// unquote splicing
-// gensym
 // splicing reader conditional
 // tagged literals
 // Should we add tests for (ERROR) nodes in some cases?
@@ -58,23 +55,6 @@ module.exports = grammar({
       // TODO: how to restrict this to only work inside function shorthand?
       $.shorthand_function_arg,
     ),
-
-    /*
-    // same as _anything, except:
-    // - no function shorthand
-    // - allow shorthand_function_arg
-    _function_shorthand_anything: $ => choice(
-      $._literals,
-      $.symbol,
-      $.anonymous_function,
-      $.defn,
-      $.quote,
-      $.comment,
-      $.syntax_quote,
-
-      $.shorthand_function_arg,
-    ),
-    */
 
     _literals: $ => choice(
       $.nil,
@@ -250,21 +230,8 @@ module.exports = grammar({
     comment: $ => choice($.semicolon, $.shebang_line, $.ignore_form, $.comment_macro),
     semicolon: $ => seq(';', /.*/),
     shebang_line: $ => seq('#!', /.*/),
-    ignore_form: $ => seq('#_', optional(repeat(' ')), $._one_form, repeat(' ')),
-    comment_macro: $ => seq('(comment', repeat($._one_form), ')'),
-    _one_form: $ => choice(
-      /[^\(\[\{\"]/, // <-- anything that is not an "open paren"
-      $._number,
-      $._symbol,
-      $._keyword,
-      $._paren_sequence,
-      $._bracket_sequence,
-      $._curly_brace_sequence,
-      $._string
-    ),
-    _paren_sequence: $ => seq('(', repeat($._one_form), ')'),
-    _bracket_sequence: $ => seq('[', repeat($._one_form), ']'),
-    _curly_brace_sequence: $ => seq(optional('#'), '{', repeat($._one_form), '}'),
+    ignore_form: $ => seq('#_', $._anything),
+    comment_macro: $ => seq('(', 'comment', repeat($._anything), ')'),
 
     // -------------------------------------------------------------------------
     // Functions

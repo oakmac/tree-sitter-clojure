@@ -38,16 +38,16 @@ Comments - ignore form #_
 ---
 
 (program
-  (list (comment (ignore_form)) (boolean (true)))
-  (comment (ignore_form))
-  (comment (ignore_form))
+  (list (comment (ignore_form (nil))) (boolean (true)))
+  (comment (ignore_form (vector (string) (string))))
+  (comment (ignore_form (set (string) (string))))
   (vector (string)
           (string)
-          (comment (ignore_form))
+          (comment (ignore_form (keyword)))
           (string))
   (vector (string)
           (string)
-          (comment (ignore_form))
+          (comment (ignore_form (set)))
           (string))
   )
 
@@ -56,22 +56,20 @@ Comments - comment macro (comment)
 =====================================
 
 (comment)
-(comment "foo")
-(comment ("a" "b" (["z" {}])) "foo")
+(     comment "foo")
 
 ["a" (comment
        "b") "c"]
+
 ["a" (comment (foo ())) "c"]
-[(comment ["a" ()]) "b" ["z" (comment #{})]]
 
 ---
 
 (program
   (comment (comment_macro))
-  (comment (comment_macro))
-  (comment (comment_macro))
+  (comment (comment_macro (string)))
 
-  (vector (string) (comment (comment_macro)) (string))
-  (vector (string) (comment (comment_macro)) (string))
-  (vector (comment (comment_macro)) (string) (vector (string) (comment (comment_macro))))
+  (vector (string) (comment (comment_macro (string))) (string))
+
+  (vector (string) (comment (comment_macro (list (symbol) (list)))) (string))
   )
