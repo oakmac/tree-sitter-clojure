@@ -8,7 +8,6 @@
 // http://cljs.github.io/api/syntax/
 
 // TODO:
-// functions
 // escape characters in strings?
 // numbers
 // - BigInt
@@ -18,8 +17,10 @@
 // - https://cljs.github.io/api/syntax/number
 // syntax quote
 // special forms
-// metadata
-// "defn" symbols
+// def
+// defmacro
+// try / catch / throw
+// ns
 // reader conditional
 // symbolic value
 // unquote
@@ -167,14 +168,6 @@ module.exports = grammar({
       $.qualified_symbol
     ),
 
-    // namespace_definition: $ => 'ns',
-    // def_form: $ => choice(
-    //   'def',
-    //   'defn',
-    //   'defn-',
-    //   'defmacro',
-    // ),
-
     threading_macro: $ => choice(
       '->', '->>',
       'as->',
@@ -260,7 +253,7 @@ module.exports = grammar({
     _multi_arity_fn: $ => repeat1(seq('(', $._single_arity_fn, ')')),
 
     // NOTE: I don't think we need to handle condition-map here explicitly
-    //       it will just be detected as (hash_map) inside the body
+    //       it will just be detected as (hash_map) inside the function body
     function_body: $ => repeat1($._anything),
 
     // TODO: we can probably be more specific here than just "vector"
@@ -285,6 +278,7 @@ module.exports = grammar({
 
     metadata: $ => choice(repeat1($.metadata_shorthand), $._metadata_map),
     _metadata_map: $ => seq('^', $.hash_map),
+    // NOTE: would it be useful to expose these as separate node types?
     metadata_shorthand: $ => choice(
       seq('^:', $._keyword_chars),
       seq('^"', repeat(choice('\\"', /[^"]/)), '"'),

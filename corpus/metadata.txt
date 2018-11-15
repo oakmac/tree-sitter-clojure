@@ -6,7 +6,6 @@ Metadata
 
 ^:private ^:dynamic ^"foo" ^String #{}
 
-
 ---
 
 (program
