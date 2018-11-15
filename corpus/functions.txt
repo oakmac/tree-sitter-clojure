@@ -13,25 +13,22 @@ anonymous fn
 ---
 
 (program
-  (special_form
-    (function
-      (anonymous_function
-        (params (vector)))))
+  (function
+    (anonymous_function
+      (params (vector))))
 
-  (special_form
-    (function
-      (anonymous_function
-        (params (vector (symbol)))
-        (function_body (nil)))))
+  (function
+    (anonymous_function
+      (params (vector (symbol)))
+      (function_body (nil))))
 
-  (special_form
-    (function
-      (anonymous_function
-        (params (vector (symbol)))
-        (function_body (symbol))
+  (function
+    (anonymous_function
+      (params (vector (symbol)))
+      (function_body (symbol))
 
-        (params (vector (symbol) (symbol)))
-        (function_body (list (symbol) (symbol) (symbol))))))
+      (params (vector (symbol) (symbol)))
+      (function_body (list (symbol) (symbol) (symbol)))))
   )
 
 =====================================
@@ -49,27 +46,59 @@ anonymous fn with name
 ---
 
 (program
-  (special_form
-    (function
-      (anonymous_function
-        (function_name (symbol))
-        (params (vector)))))
+  (function
+    (anonymous_function
+      (function_name (symbol))
+      (params (vector))))
 
-  (special_form
-    (function
-      (anonymous_function
-        (function_name (symbol))
-        (params (vector (symbol)))
-        (function_body (nil)))))
+  (function
+    (anonymous_function
+      (function_name (symbol))
+      (params (vector (symbol)))
+      (function_body (nil))))
 
-  (special_form
-    (function
-      (anonymous_function
-        (function_name (symbol))
+  (function
+    (anonymous_function
+      (function_name (symbol))
 
-        (params (vector (symbol)))
-        (function_body (symbol))
+      (params (vector (symbol)))
+      (function_body (symbol))
 
-        (params (vector (symbol) (symbol)))
-        (function_body (list (symbol) (symbol) (symbol))))))
+      (params (vector (symbol) (symbol)))
+      (function_body (list (symbol) (symbol) (symbol)))))
+  )
+
+=====================================
+function shorthand
+=====================================
+
+#()
+
+#(conj [] "a")
+
+#(swap! % inc)
+
+#(conj [] %1 %2 %3 %&)
+
+---
+
+(program
+  (function (shorthand_function))
+
+  (function
+    (shorthand_function
+      (symbol) (vector) (string)))
+
+  (function
+    (shorthand_function
+      (symbol) (shorthand_function_arg) (symbol)))
+
+  (function
+    (shorthand_function
+      (symbol)
+      (vector)
+      (shorthand_function_arg)
+      (shorthand_function_arg)
+      (shorthand_function_arg)
+      (shorthand_function_arg)))
   )

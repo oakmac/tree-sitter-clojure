@@ -48,7 +48,7 @@ module.exports = grammar({
       $._collection_literal,
       $.quote,
       $.comment,
-      $.special_form,
+      $.function,
     ),
 
     _literal: $ => choice(
@@ -248,19 +248,10 @@ module.exports = grammar({
     _curly_brace_sequence: $ => seq(optional('#'), '{', repeat($._one_form), '}'),
 
     // -------------------------------------------------------------------------
-    // Special Forms
-    // -------------------------------------------------------------------------
-
-    special_form: $ => choice(
-      $.function,
-      // TODO: more here
-    ),
-
-    // -------------------------------------------------------------------------
     // Functions
     // -------------------------------------------------------------------------
 
-    function: $ => choice($.named_function, $.anonymous_function, $.shorthand_function),
+    function: $ => choice($.anonymous_function, $.shorthand_function, $.defn_function),
 
     anonymous_function: $ => seq('(', 'fn', optional($.function_name), choice($._single_arity_fn, $._multi_arity_fn), ')'),
     function_name: $ => $.symbol,
@@ -274,8 +265,10 @@ module.exports = grammar({
     // TODO: we can probably be more specific here than just "vector"
     params: $ => $.vector,
 
-    named_function: $ => 'TODO: write me',
-    shorthand_function: $ => 'TODO: write me 2'
+    shorthand_function: $ => seq('#(', repeat(choice($.shorthand_function_arg, $._anything)), ')'),
+    shorthand_function_arg: $ => /%[1-9&]*/,
+
+    defn_function: $ => 'TODO: write me',
   }
 })
 
