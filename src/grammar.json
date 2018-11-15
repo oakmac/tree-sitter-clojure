@@ -34,68 +34,6 @@
         {
           "type": "SYMBOL",
           "name": "syntax_quote"
-        }
-      ]
-    },
-    "_anything_inside_function_shorthand": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_literals"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "symbol"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "anonymous_function"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "defn"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "quote"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "comment"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "syntax_quote"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "shorthand_function_arg"
-        }
-      ]
-    },
-    "_anything_inside_syntax_quote": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_literals"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "symbol"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_functions"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "quote"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "comment"
         },
         {
           "type": "SYMBOL",
@@ -104,6 +42,14 @@
         {
           "type": "SYMBOL",
           "name": "unquote_splice"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "gensym"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "shorthand_function_arg"
         }
       ]
     },
@@ -1602,7 +1548,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "_anything_inside_function_shorthand"
+            "name": "_anything"
           }
         },
         {
@@ -1787,28 +1733,43 @@
       "members": [
         {
           "type": "STRING",
-          "value": "`("
+          "value": "`"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_anything_inside_syntax_quote"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": ")"
+          "type": "SYMBOL",
+          "name": "_anything"
         }
       ]
     },
     "unquote": {
-      "type": "STRING",
-      "value": "asdfasdfdsfadsfadsfadsf"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "~"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_anything"
+        }
+      ]
     },
     "unquote_splice": {
-      "type": "STRING",
-      "value": "qwerqwerqwerqwerwerqerew"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "~@"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_anything"
+        }
+      ]
+    },
+    "gensym": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z\\*\\+\\!\\-\\_\\?][a-zA-Z0-9\\*\\+\\!\\-\\_\\?\\'\\:]*\\#"
     }
   },
   "extras": [

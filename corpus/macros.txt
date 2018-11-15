@@ -9,19 +9,18 @@ Syntax quote
 ---
 
 (program
-
-  (syntax-quote
+  (syntax_quote
     (list
       (symbol)
       (unquote (symbol))))
 
-  (syntax-quote
+  (syntax_quote
     (list
       (symbol)
-      (unquote-splice (symbol))))
+      (unquote_splice (symbol))))
 
-  (syntax-quote
+  (syntax_quote
     (list
       (symbol)
-      (auto-gensym)))
+      (gensym)))
   )

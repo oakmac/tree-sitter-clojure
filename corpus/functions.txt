@@ -74,8 +74,6 @@ function shorthand
 
 #(conj [] %1 %2 %3 %&)
 
-#(foo #())
-
 ---
 
 (program
@@ -94,8 +92,6 @@ function shorthand
     (shorthand_function_arg)
     (shorthand_function_arg)
     (shorthand_function_arg))
-
-  (shorthand_function (symbol) (ERROR)) (ERROR)
   )
 
 =====================================

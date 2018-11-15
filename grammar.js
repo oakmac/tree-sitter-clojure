@@ -48,13 +48,22 @@ module.exports = grammar({
       $._functions,
       $.quote,
       $.comment,
+
       $.syntax_quote,
+      // TODO: how to restrict these to only work inside syntax quote?
+      $.unquote,
+      $.unquote_splice,
+      $.gensym,
+
+      // TODO: how to restrict this to only work inside function shorthand?
+      $.shorthand_function_arg,
     ),
 
+    /*
     // same as _anything, except:
     // - no function shorthand
     // - allow shorthand_function_arg
-    _anything_inside_function_shorthand: $ => choice(
+    _function_shorthand_anything: $ => choice(
       $._literals,
       $.symbol,
       $.anonymous_function,
@@ -65,20 +74,7 @@ module.exports = grammar({
 
       $.shorthand_function_arg,
     ),
-
-    // same as _anything, except:
-    // - no syntax quote
-    // - allow unquote and unquote_splice
-    _anything_inside_syntax_quote: $ => choice(
-      $._literals,
-      $.symbol,
-      $._functions,
-      $.quote,
-      $.comment,
-
-      $.unquote,
-      $.unquote_splice,
-    ),
+    */
 
     _literals: $ => choice(
       $.nil,
@@ -289,7 +285,7 @@ module.exports = grammar({
     // TODO: we can probably be more specific here than just "vector"
     params: $ => $.vector,
 
-    shorthand_function: $ => seq('#(', repeat($._anything_inside_function_shorthand), ')'),
+    shorthand_function: $ => seq('#(', repeat($._anything), ')'),
     shorthand_function_arg: $ => /%[1-9&]*/,
 
     defn: $ => seq('(', choice('defn', 'defn-'),
@@ -315,12 +311,13 @@ module.exports = grammar({
     ),
 
     // -------------------------------------------------------------------------
-    // Syntax Quote and friends
+    // Syntax Quote and macro-related friends
     // -------------------------------------------------------------------------
 
-    syntax_quote: $ => seq('`(', repeat($._anything_inside_syntax_quote), ')'),
-    unquote: $ => "asdfasdfdsfadsfadsfadsf",
-    unquote_splice: $ => 'qwerqwerqwerqwerwerqerew',
+    syntax_quote: $ => seq('`', $._anything),
+    unquote: $ => seq('~', $._anything),
+    unquote_splice: $ => seq('~@', $._anything),
+    gensym: $ => /[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\?\'\:]*\#/,
   }
 })
 
