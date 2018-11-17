@@ -26,7 +26,7 @@
 // splicing reader conditional
 // tagged literals
 // Should we add tests for (ERROR) nodes in some cases?
-// deref @
+// deref / @
 
 const DIGITS = token(sep1(/[0-9]+/, /_+/))
 
@@ -195,7 +195,7 @@ module.exports = grammar({
     member_access: $ => /\.[a-zA-Z_]\w*/,
     field_access: $ => /\.-[a-zA-Z_]\w*/,
     new_class: $ => /([a-zA-Z_]\w*\.)(\w+\.)*/,
-    // TODO: "new" symbol, single dot, double dot
+    // TODO: "new" symbol, single dot, double dot, memfn, doto
 
     // -------------------------------------------------------------------------
     // List - ()
