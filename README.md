@@ -1,4 +1,4 @@
-# tree-sitter-clojure
+# tree-sitter-clojure [![Build Status](https://travis-ci.org/oakmac/tree-sitter-clojure.svg?branch=master)](https://travis-ci.org/oakmac/tree-sitter-clojure)
 
 This repo contains a [tree-sitter] grammar for [Clojure] and [ClojureScript].
 
