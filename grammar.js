@@ -8,23 +8,9 @@
 // http://cljs.github.io/api/syntax/
 
 // TODO:
-// escape characters in strings?
-// numbers
-// - BigInt
-// - BigDecimal
-// - Ratio
-// - hex? octal? etc https://stackoverflow.com/questions/41489239/octal-number-handling-in-clojure
-// - https://cljs.github.io/api/syntax/number
-// special forms
-// def
-// defmacro
 // try / catch / throw
-// ns
-// reader conditional
 // symbolic value
 // var quote
-// splicing reader conditional
-// tagged literals
 // Should we add tests for (ERROR) nodes in some cases?
 // deref / @
 
