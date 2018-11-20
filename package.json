@@ -1,7 +1,7 @@
 {
   "author": "Chris Oakman <chris@oakmac.com> (http://chrisoakman.com/)",
   "name": "tree-sitter-clojure",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Clojure grammar for tree-sitter",
   "repository": {
     "type": "git",
