@@ -33,7 +33,7 @@ You can read more about tree-sitter on [the website].
 No. Tree-sitter is open source and has bindings to C, so it can be used in many
 environments.
 
-#### How can I use this project with my _<favorite editor>_?
+#### How can I use this project with my favorite editor?
 
 Unfortunately, there is not a "one size fits all" solution here.
 
