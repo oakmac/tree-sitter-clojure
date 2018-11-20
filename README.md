@@ -22,14 +22,26 @@ You can read more about tree-sitter on [the website].
 ## Design Considerations
 
 - Clojure, ClojureScript, and `.cljc` as first class citizens
-- When in doubt, be more specific:
-  - editors can determine what to highlight
+- When in doubt, be more specific
+  - we may put more information than strictly required into the AST
+  - this gives editors / integrations the option to highlight what they want
 
 ## FAQ
 
-#### Is tree-sitter only for Atom?
+#### Is tree-sitter-clojure only for Atom?
 
-No. Tree-sitter is open source and has bindings to C, so it
+No. Tree-sitter is open source and has bindings to C, so it can be used in many
+environments.
+
+#### How can I use this project with my _<favorite editor>_?
+
+Unfortunately, there is not a "one size fits all" solution here.
+
+Every integration will be different, depending largely on how the target
+environment / tool supports syntax highlighting, extensions, etc. Please see the
+documentation for your editor and the [tree-sitter source] for more information.
+
+[tree-sitter source]:https://github.com/tree-sitter/tree-sitter
 
 ## Development
 
@@ -47,6 +59,11 @@ npm run build
 # test the corpus
 npm run test
 ```
+
+Please see the ["installing the tools"] section on the tree-sitter website for
+more information.
+
+["installing the tools"]:https://tree-sitter.github.io/tree-sitter/creating-parsers#installing-the-tools).
 
 ## License
 
