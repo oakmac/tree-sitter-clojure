@@ -21,3 +21,19 @@ Quote - '() (quote)
   (quote (string))
   (quote (list (string) (string) (string)))
   )
+
+=====================================
+Deref - @
+=====================================
+
+@foo
+@      foo
+@(identity foo)
+
+---
+
+(program
+  (deref (symbol))
+  (deref (symbol))
+  (deref (list (symbol) (symbol)))
+  )

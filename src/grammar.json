@@ -37,6 +37,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "deref"
+        },
+        {
+          "type": "SYMBOL",
           "name": "syntax_quote"
         },
         {
@@ -1676,6 +1680,28 @@
     "gensym": {
       "type": "PATTERN",
       "value": "[a-zA-Z\\*\\+\\!\\-\\_\\?][a-zA-Z0-9\\*\\+\\!\\-\\_\\?\\'\\:]*\\#"
+    },
+    "deref": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "symbol"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "list"
+            }
+          ]
+        }
+      ]
     }
   },
   "extras": [

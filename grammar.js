@@ -11,8 +11,6 @@
 // try / catch / throw
 // symbolic value
 // var quote
-// Should we add tests for (ERROR) nodes in some cases?
-// deref / @
 
 const DIGITS = token(sep1(/[0-9]+/, /_+/))
 
@@ -33,6 +31,7 @@ module.exports = grammar({
       $._functions,
       $.quote,
       $.comment,
+      $.deref,
 
       $.syntax_quote,
       // TODO: how to restrict these to only work inside syntax quote?
@@ -283,6 +282,13 @@ module.exports = grammar({
     unquote: $ => seq('~', $._anything),
     unquote_splice: $ => seq('~@', $._anything),
     gensym: $ => /[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\?\'\:]*\#/,
+
+    // -------------------------------------------------------------------------
+    // Deref
+    // -------------------------------------------------------------------------
+
+    // NOTE: presumably a list here would evaluate to something that can be derefed
+    deref: $ => seq('@', choice($.symbol, $.list)),
   }
 })
 
