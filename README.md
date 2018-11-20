@@ -60,10 +60,10 @@ npm run build
 npm run test
 ```
 
-Please see the ["installing the tools"] section on the tree-sitter website for
+Please see the [installing the tools] section on the tree-sitter website for
 more information.
 
-["installing the tools"]:https://tree-sitter.github.io/tree-sitter/creating-parsers#installing-the-tools).
+[installing the tools]:https://tree-sitter.github.io/tree-sitter/creating-parsers#installing-the-tools
 
 ## License
 
