@@ -77,10 +77,13 @@ module.exports = grammar({
     number: $ => $._number,
     _number: $ => choice(
       $.number_long,
-      $.number_double
-      // $.number_bigint,
+      $.number_double,
+      $.number_bigint,
       // $.number_bigdecimal,
-      // $.number_ratio
+      $.number_ratio,
+      // $.number_octal,
+      // $.number_hex,
+      // $.number_arbitrary_radix
     ),
 
     number_long: $ => /[-+]?\d+/,
@@ -91,9 +94,12 @@ module.exports = grammar({
         seq(DIGITS, /[eE]/, optional(choice('-', '+')), DIGITS, optional(/[fFdD]/)),
         seq(DIGITS, optional(seq((/[eE]/), optional(choice('-', '+')), DIGITS)), (/[fFdD]/))
       )),
-    // number_bigint: $ =>
+    number_bigint: $ => /[-+]?\d+N/,
     // number_bigdecimal: $ =>
-    // number_ratio: $ =>
+    number_ratio: $ => /[-+]?\d+\/\d+/,
+    // number_octal: $ => ,
+    // number_hex: $ => ,
+    // number_arbitrary_radix: $ =>
 
     // -------------------------------------------------------------------------
     // Character - \a

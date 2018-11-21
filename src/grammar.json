@@ -175,6 +175,14 @@
         {
           "type": "SYMBOL",
           "name": "number_double"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number_bigint"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number_ratio"
         }
       ]
     },
@@ -656,6 +664,14 @@
           }
         ]
       }
+    },
+    "number_bigint": {
+      "type": "PATTERN",
+      "value": "[-+]?\\d+N"
+    },
+    "number_ratio": {
+      "type": "PATTERN",
+      "value": "[-+]?\\d+\\/\\d+"
     },
     "character": {
       "type": "SYMBOL",

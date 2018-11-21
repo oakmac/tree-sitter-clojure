@@ -35,6 +35,14 @@ Numbers
 0.0e-4
 .2e-2
 
++83N
+4N
+-27362746264274623285736757364838535636343463N
+
+3/2
++4/5
+-7/11
+
 ---
 
 (program
@@ -54,7 +62,16 @@ Numbers
   (number (number_double))
   (number (number_double))
   (number (number_double))
-  (number (number_double)))
+  (number (number_double))
+
+  (number (number_bigint))
+  (number (number_bigint))
+  (number (number_bigint))
+
+  (number (number_ratio))
+  (number (number_ratio))
+  (number (number_ratio))
+  )
 
 =====================================
 Characters - \a
