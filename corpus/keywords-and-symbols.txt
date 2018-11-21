@@ -8,6 +8,7 @@ Keywords - :foo
 :j3_!:7
 :HELICOPTER
 :+fiduciary+
+:use-smart-mode?
 
 ::foo
 ::foo/bar
@@ -15,6 +16,7 @@ Keywords - :foo
 ---
 
 (program
+  (keyword)
   (keyword)
   (keyword)
   (keyword)

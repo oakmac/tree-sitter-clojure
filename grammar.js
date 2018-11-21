@@ -148,7 +148,7 @@ module.exports = grammar({
       seq('::', $._keyword_chars),
       seq('::', $._keyword_chars, '/', $._keyword_chars)
     ),
-    _keyword_chars: $ => /[a-zA-Z0-9\-\_\!\+\.][a-zA-Z0-9\-\_\!\+\.\:]*/,
+    _keyword_chars: $ => /[a-zA-Z0-9\-\_\!\+\.][a-zA-Z0-9\-\_\!\+\.\:\?]*/,
 
     // -------------------------------------------------------------------------
     // Symbols - foo
