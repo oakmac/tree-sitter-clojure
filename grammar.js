@@ -6,11 +6,8 @@
 // https://github.com/tree-sitter/tree-sitter-java/blob/master/grammar.js
 // https://github.com/atom/language-clojure/blob/master/grammars/clojure.cson
 // http://cljs.github.io/api/syntax/
-
-// TODO:
-// try / catch / throw
-// symbolic value
-// var quote
+// https://gist.github.com/Aerijo/df27228d70c633e088b0591b8857eeef
+// https://github.com/Tavistock/tree-sitter-clojure
 
 const DIGITS = token(sep1(/[0-9]+/, /_+/))
 
@@ -35,11 +32,13 @@ module.exports = grammar({
 
       $.syntax_quote,
       // TODO: how to restrict these to only work inside syntax quote?
+      // https://github.com/oakmac/tree-sitter-clojure/issues/12
       $.unquote,
       $.unquote_splice,
       $.gensym,
 
       // TODO: how to restrict this to only work inside function shorthand?
+      // https://github.com/oakmac/tree-sitter-clojure/issues/11
       $.shorthand_function_arg,
     ),
 
@@ -132,7 +131,7 @@ module.exports = grammar({
     // Quote - '() (quote)
     // -------------------------------------------------------------------------
 
-    // TODO: would it be useful to distinguish between these two?
+    // NOTE: would it be useful to distinguish between these two?
     quote: $ => $._quote,
     _quote: $ => choice(
       seq("'", $._anything),
@@ -187,6 +186,7 @@ module.exports = grammar({
     field_access: $ => /\.-[a-zA-Z_]\w*/,
     new_class: $ => /([a-zA-Z_]\w*\.)(\w+\.)*/,
     // TODO: "new" symbol, single dot, double dot, memfn, doto
+    // https://github.com/oakmac/tree-sitter-clojure/issues/13
 
     // -------------------------------------------------------------------------
     // List - ()
@@ -252,7 +252,7 @@ module.exports = grammar({
     //       it will just be detected as (hash_map) inside the function body
     function_body: $ => repeat1($._anything),
 
-    // TODO: we can probably be more specific here than just "vector"
+    // NOTE: we can probably be more specific here than just "vector"
     params: $ => $.vector,
 
     shorthand_function: $ => seq('#(', repeat($._anything), ')'),
