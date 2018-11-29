@@ -26,7 +26,7 @@ function walk(node) {
   children.forEach(walk);
 }
 walk(tree.rootNode);
-tags.sort((a,b) => a.i - b.i);
+tags.sort((a,b) => a.i - b.i || a.isOpen - b.isOpen);
 
 // output html
 let prevI = 0;
