@@ -45,6 +45,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "var_quote"
+        },
+        {
+          "type": "SYMBOL",
           "name": "unquote"
         },
         {
@@ -1664,6 +1668,19 @@
         {
           "type": "SYMBOL",
           "name": "_anything"
+        }
+      ]
+    },
+    "var_quote": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#'"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol"
         }
       ]
     },

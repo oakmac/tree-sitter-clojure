@@ -24,3 +24,15 @@ Syntax quote
       (symbol)
       (gensym)))
   )
+
+=====================================
+Var quote - #'
+=====================================
+
+#'foo
+
+---
+
+(program
+  (var_quote
+    (symbol)))

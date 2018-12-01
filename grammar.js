@@ -31,6 +31,7 @@ module.exports = grammar({
       $.deref,
 
       $.syntax_quote,
+      $.var_quote,
       // TODO: how to restrict these to only work inside syntax quote?
       // https://github.com/oakmac/tree-sitter-clojure/issues/12
       $.unquote,
@@ -285,6 +286,7 @@ module.exports = grammar({
     // -------------------------------------------------------------------------
 
     syntax_quote: $ => seq('`', $._anything),
+    var_quote: $ => seq("#'", $.symbol),
     unquote: $ => seq('~', $._anything),
     unquote_splice: $ => seq('~@', $._anything),
     gensym: $ => /[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\?\'\:]*\#/,
