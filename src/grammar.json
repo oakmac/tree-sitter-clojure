@@ -103,6 +103,10 @@
         {
           "type": "SYMBOL",
           "name": "_collection_literals"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tagged_literal"
         }
       ]
     },
@@ -1082,6 +1086,10 @@
       "value": "[a-zA-Z\\*\\+\\!\\-\\_\\?][a-zA-Z0-9\\*\\+\\!\\-\\_\\?\\'\\:]*"
     },
     "qualified_symbol": {
+      "type": "SYMBOL",
+      "name": "_qualified_symbol"
+    },
+    "_qualified_symbol": {
       "type": "SEQ",
       "members": [
         {
@@ -1235,12 +1243,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
-              "value": "#"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_symbol_chars"
+              "type": "PATTERN",
+              "value": "\\#\\:[a-zA-Z\\*\\+\\!\\-\\_\\?][a-zA-Z0-9\\*\\+\\!\\-\\_\\?\\'\\:]*"
             },
             {
               "type": "STRING",
@@ -1773,6 +1777,28 @@
             {
               "type": "SYMBOL",
               "name": "list"
+            }
+          ]
+        }
+      ]
+    },
+    "tagged_literal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_symbol_chars"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_qualified_symbol"
             }
           ]
         }

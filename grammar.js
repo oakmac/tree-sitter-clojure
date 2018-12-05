@@ -32,14 +32,11 @@ module.exports = grammar({
 
       $.syntax_quote,
       $.var_quote,
-      // TODO: how to restrict these to only work inside syntax quote?
-      // https://github.com/oakmac/tree-sitter-clojure/issues/12
+
       $.unquote,
       $.unquote_splice,
       $.gensym,
 
-      // TODO: how to restrict this to only work inside function shorthand?
-      // https://github.com/oakmac/tree-sitter-clojure/issues/11
       $.shorthand_function_arg,
     ),
 
@@ -52,7 +49,8 @@ module.exports = grammar({
       $.string,
       $.regex,
       $.keyword,
-      $._collection_literals
+      $._collection_literals,
+      $.tagged_literal
     ),
 
     _collection_literals: $ => seq(optional($.metadata), choice(
@@ -186,7 +184,8 @@ module.exports = grammar({
 
     // reference: https://clojure.org/reference/reader#_symbols
     _symbol_chars: $ =>   /[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\?\'\:]*/,
-    qualified_symbol: $ => seq($._symbol_chars, '/', $._symbol_chars),
+    qualified_symbol: $ => $._qualified_symbol,
+    _qualified_symbol: $ => seq($._symbol_chars, '/', $._symbol_chars),
 
     // -------------------------------------------------------------------------
     // Interop - .foo .-foo java.blah.Klass.
@@ -224,7 +223,7 @@ module.exports = grammar({
     ),
     namespace_map: $ => choice(
       seq('#::{', repeat($._hash_map_kv_pair), '}'),
-      seq('#', $._symbol_chars, '{', repeat($._hash_map_kv_pair), '}')
+      seq(/\#\:[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\?\'\:]*/, '{', repeat($._hash_map_kv_pair), '}')
     ),
     _hash_map_kv_pair: $ => seq($._hash_map_key, $._hash_map_value),
     _hash_map_key: $ => $._anything,
@@ -307,6 +306,12 @@ module.exports = grammar({
 
     // NOTE: presumably a list here would evaluate to something that can be derefed
     deref: $ => seq('@', choice($.symbol, $.list)),
+
+    // -------------------------------------------------------------------------
+    // Tagged Literal - #inst, #uuid, #foo/bar
+    // -------------------------------------------------------------------------
+
+    tagged_literal: $ => seq('#', choice($._symbol_chars, $._qualified_symbol)),
   }
 })
 

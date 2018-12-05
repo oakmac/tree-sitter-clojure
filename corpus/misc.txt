@@ -59,3 +59,21 @@ Symbolic Value - ##Inf, ##-Inf, ##NaN
         (symbolic_value (not_a_number)))
   (symbolic_value (infinity))
   )
+
+=====================================
+Tagged Literal - #inst, #uuid, #foo/bar
+=====================================
+
+#inst
+#uuid
+# js
+#foo/bar
+
+---
+
+(program
+  (tagged_literal)
+  (tagged_literal)
+  (tagged_literal)
+  (tagged_literal)
+  )
