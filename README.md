@@ -61,7 +61,7 @@ npm run test
 ```
 
 Please see the [installing the tools] section on the tree-sitter website for
-more information.
+more information. [This comment](https://github.com/oakmac/tree-sitter-clojure/issues/17#issuecomment-441665543) may also be helpful in getting started.
 
 [installing the tools]:https://tree-sitter.github.io/tree-sitter/creating-parsers#installing-the-tools
 
