@@ -37,3 +37,25 @@ Deref - @
   (deref (symbol))
   (deref (list (symbol) (symbol)))
   )
+
+=====================================
+Symbolic Value - ##Inf, ##-Inf, ##NaN
+=====================================
+
+[##Inf, 2, 3]
+##-Inf
+(+ 8 ## NaN)
+##       Inf
+
+---
+
+(program
+  (vector (symbolic_value (infinity))
+          (number (number_long))
+          (number (number_long)))
+  (symbolic_value (negative_infinity))
+  (list (symbol)
+        (number (number_long))
+        (symbolic_value (not_a_number)))
+  (symbolic_value (infinity))
+  )

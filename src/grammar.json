@@ -82,6 +82,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "symbolic_value"
+        },
+        {
+          "type": "SYMBOL",
           "name": "character"
         },
         {
@@ -676,6 +680,44 @@
     "number_ratio": {
       "type": "PATTERN",
       "value": "[-+]?\\d+\\/\\d+"
+    },
+    "symbolic_value": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "##"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "infinity"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "negative_infinity"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "not_a_number"
+            }
+          ]
+        }
+      ]
+    },
+    "infinity": {
+      "type": "STRING",
+      "value": "Inf"
+    },
+    "negative_infinity": {
+      "type": "STRING",
+      "value": "-Inf"
+    },
+    "not_a_number": {
+      "type": "STRING",
+      "value": "NaN"
     },
     "character": {
       "type": "SYMBOL",

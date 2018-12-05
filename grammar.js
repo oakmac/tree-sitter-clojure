@@ -47,6 +47,7 @@ module.exports = grammar({
       $.nil,
       $.boolean,
       $.number,
+      $.symbolic_value,
       $.character,
       $.string,
       $.regex,
@@ -100,6 +101,15 @@ module.exports = grammar({
     // number_octal: $ => ,
     // number_hex: $ => ,
     // number_arbitrary_radix: $ =>
+
+    // -------------------------------------------------------------------------
+    // Symbolic Value - ##Inf, ##-Inf, ##NaN
+    // -------------------------------------------------------------------------
+
+    symbolic_value: $ => seq('##', choice($.infinity, $.negative_infinity, $.not_a_number)),
+    infinity: $ => 'Inf',
+    negative_infinity: $ => '-Inf',
+    not_a_number: $ => 'NaN',
 
     // -------------------------------------------------------------------------
     // Character - \a
