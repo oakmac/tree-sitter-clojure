@@ -17,6 +17,7 @@
     "nan": "^2.11.1"
   },
   "devDependencies": {
+    "highlight-tree-sitter": "^1.0.0",
     "tree-sitter-cli": "^0.13.10"
   }
 }
