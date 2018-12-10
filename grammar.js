@@ -38,6 +38,7 @@ module.exports = grammar({
       $.gensym,
 
       $.shorthand_function_arg,
+      $.reader_conditional,
     ),
 
     _literals: $ => choice(
@@ -312,6 +313,16 @@ module.exports = grammar({
     // -------------------------------------------------------------------------
 
     tagged_literal: $ => seq('#', choice($._symbol_chars, $._qualified_symbol)),
+
+    // -------------------------------------------------------------------------
+    // Reader Conditional - #?, #?@
+    // -------------------------------------------------------------------------
+
+    // NOTE: maybe we should identify "clojure_part", "cljs_part", etc here?
+    reader_conditional: $ => seq($._reader_conditional_symbol, '(', repeat(seq($.keyword, $._anything)), ')'),
+
+    // NOTE: I don't think we really need to distinguish between these two
+    _reader_conditional_symbol: $ => choice('#?', '#?@'),
   }
 })
 

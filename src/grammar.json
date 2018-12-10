@@ -62,6 +62,10 @@
         {
           "type": "SYMBOL",
           "name": "shorthand_function_arg"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "reader_conditional"
         }
       ]
     },
@@ -1801,6 +1805,52 @@
               "name": "_qualified_symbol"
             }
           ]
+        }
+      ]
+    },
+    "reader_conditional": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_reader_conditional_symbol"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "keyword"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_anything"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "_reader_conditional_symbol": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#?"
+        },
+        {
+          "type": "STRING",
+          "value": "#?@"
         }
       ]
     }

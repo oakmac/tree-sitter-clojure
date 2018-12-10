@@ -77,3 +77,32 @@ Tagged Literal - #inst, #uuid, #foo/bar
   (tagged_literal)
   (tagged_literal)
   )
+
+
+=====================================
+Reader Conditional - #? #?@
+=====================================
+
+#?(:clj  (Clojure expression)
+   :cljs (ClojureScript expression)
+   :cljr (ClojureCLR expression)
+   :default (fallthrough expression))
+
+(list #?@(:clj  ["a"]
+          :cljs [:a]))
+
+---
+
+(program
+  (reader_conditional
+    (keyword) (list (symbol) (symbol))
+    (keyword) (list (symbol) (symbol))
+    (keyword) (list (symbol) (symbol))
+    (keyword) (list (symbol) (symbol)))
+
+  (list
+    (symbol)
+    (reader_conditional
+      (keyword) (vector (string))
+      (keyword) (vector (keyword))))
+  )
