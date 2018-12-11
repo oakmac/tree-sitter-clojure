@@ -21,6 +21,10 @@ Numbers
 +1
 -5
 +0
+0xff
+2r111
+040
+36rCRAZY
 
 4.23e9
 4.23e-9
@@ -49,6 +53,10 @@ Numbers
 ---
 
 (program
+  (number (number_long))
+  (number (number_long))
+  (number (number_long))
+  (number (number_long))
   (number (number_long))
   (number (number_long))
   (number (number_long))

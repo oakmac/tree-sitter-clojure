@@ -80,14 +80,15 @@ module.exports = grammar({
       $.number_double,
       $.number_bigint,
       $.number_bigdecimal,
-      $.number_ratio,
-
-      // $.number_octal,
-      // $.number_hex,
-      // $.number_arbitrary_radix
+      $.number_ratio
     ),
 
-    number_long: $ => /[-+]?\d+/,
+    number_long: $ => choice($._normal_long, $._number_hex, $._number_arbitrary_radix, $._number_octal),
+    _normal_long: $ => /[-+]?\d+/,
+    _number_hex: $ => /-?0[xX][0-9a-fA-F]+/,
+    _number_arbitrary_radix: $ => /-?\d+[rR][0-9a-zA-Z]+/,
+    _number_octal: $ => /-?0\d+/,
+
     number_double: $ => token(
       choice(
         seq(DIGITS, '.', optional(DIGITS), optional(seq((/[eE]/), optional(choice('-', '+')), DIGITS)), optional(/[fFdD]/)),
@@ -98,9 +99,6 @@ module.exports = grammar({
     number_bigint: $ => /[-+]?\d+N/,
     number_bigdecimal: $ => /-?\d+\.\d+([eE][+-]?\d+)?M/,
     number_ratio: $ => /[-+]?\d+\/\d+/,
-    // number_octal: $ => ,
-    // number_hex: $ => ,
-    // number_arbitrary_radix: $ =>
 
     // -------------------------------------------------------------------------
     // Symbolic Value - ##Inf, ##-Inf, ##NaN

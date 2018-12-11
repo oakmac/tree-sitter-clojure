@@ -207,8 +207,41 @@
       ]
     },
     "number_long": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_normal_long"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_number_hex"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_number_arbitrary_radix"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_number_octal"
+        }
+      ]
+    },
+    "_normal_long": {
       "type": "PATTERN",
       "value": "[-+]?\\d+"
+    },
+    "_number_hex": {
+      "type": "PATTERN",
+      "value": "-?0[xX][0-9a-fA-F]+"
+    },
+    "_number_arbitrary_radix": {
+      "type": "PATTERN",
+      "value": "-?\\d+[rR][0-9a-zA-Z]+"
+    },
+    "_number_octal": {
+      "type": "PATTERN",
+      "value": "-?0\\d+"
     },
     "number_double": {
       "type": "TOKEN",
