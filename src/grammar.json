@@ -198,6 +198,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "number_bigdecimal"
+        },
+        {
+          "type": "SYMBOL",
           "name": "number_ratio"
         }
       ]
@@ -684,6 +688,10 @@
     "number_bigint": {
       "type": "PATTERN",
       "value": "[-+]?\\d+N"
+    },
+    "number_bigdecimal": {
+      "type": "PATTERN",
+      "value": "-?\\d+\\.\\d+([eE][+-]?\\d+)?M"
     },
     "number_ratio": {
       "type": "PATTERN",

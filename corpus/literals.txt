@@ -39,6 +39,9 @@ Numbers
 4N
 -27362746264274623285736757364838535636343463N
 
+0.01M
+-4.2M
+
 3/2
 +4/5
 -7/11
@@ -67,6 +70,9 @@ Numbers
   (number (number_bigint))
   (number (number_bigint))
   (number (number_bigint))
+
+  (number (number_bigdecimal))
+  (number (number_bigdecimal))
 
   (number (number_ratio))
   (number (number_ratio))
