@@ -162,7 +162,7 @@ module.exports = grammar({
       seq('::', $._keyword_chars),
       seq('::', $._keyword_chars, '/', $._keyword_chars)
     ),
-    _keyword_chars: $ => /[a-zA-Z0-9\-\_\!\+\.][a-zA-Z0-9\-\_\!\+\.\:\?]*/,
+    _keyword_chars: $ => /[a-zA-Z0-9\-_\!\+\.][a-zA-Z0-9\-_\!\+\.:\?]*/,
 
     // -------------------------------------------------------------------------
     // Symbols - foo
@@ -183,7 +183,7 @@ module.exports = grammar({
     ),
 
     // reference: https://clojure.org/reference/reader#_symbols
-    _symbol_chars: $ =>   /[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\?\'\:]*/,
+    _symbol_chars: $ =>   /[a-zA-Z\*\+\!\-_\?][a-zA-Z0-9\*\+\!\-_\?\':]*/,
     qualified_symbol: $ => $._qualified_symbol,
     _qualified_symbol: $ => seq($._symbol_chars, '/', $._symbol_chars),
 
@@ -223,7 +223,7 @@ module.exports = grammar({
     ),
     namespace_map: $ => choice(
       seq('#::{', repeat($._hash_map_kv_pair), '}'),
-      seq(/\#\:[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\?\'\:]*/, '{', repeat($._hash_map_kv_pair), '}')
+      seq(/\#:[a-zA-Z\*\+\!\-_\?][a-zA-Z0-9\*\+\!\-_\?\':]*/, '{', repeat($._hash_map_kv_pair), '}')
     ),
     _hash_map_kv_pair: $ => seq($._hash_map_key, $._hash_map_value),
     _hash_map_key: $ => $._anything,
@@ -298,7 +298,7 @@ module.exports = grammar({
     var_quote: $ => seq("#'", $.symbol),
     unquote: $ => seq('~', $._anything),
     unquote_splice: $ => seq('~@', $._anything),
-    gensym: $ => /[a-zA-Z\*\+\!\-\_\?][a-zA-Z0-9\*\+\!\-\_\?\'\:]*\#/,
+    gensym: $ => /[a-zA-Z\*\+\!\-_\?][a-zA-Z0-9\*\+\!\-_\?\':]*\#/,
 
     // -------------------------------------------------------------------------
     // Deref

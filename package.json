@@ -14,10 +14,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "nan": "^2.11.1"
+    "nan": "^2.12.1"
   },
   "devDependencies": {
     "highlight-tree-sitter": "^1.0.0",
-    "tree-sitter-cli": "^0.13.10"
+    "tree-sitter-cli": "^0.14.1"
   }
 }
