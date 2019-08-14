@@ -1,0 +1,2562 @@
+[
+  {
+    "type": "anonymous_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "function_body",
+          "named": true
+        },
+        {
+          "type": "function_name",
+          "named": true
+        },
+        {
+          "type": "params",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attr_map",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "hash_map",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "boolean",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "character",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment_macro",
+          "named": true
+        },
+        {
+          "type": "ignore_form",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        },
+        {
+          "type": "shebang_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comment_macro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "defn",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attr_map",
+          "named": true
+        },
+        {
+          "type": "docstring",
+          "named": true
+        },
+        {
+          "type": "function_body",
+          "named": true
+        },
+        {
+          "type": "function_name",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "params",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "deref",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "docstring",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "hash_map",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "namespace_map",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ignore_form",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interop",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "field_access",
+          "named": true
+        },
+        {
+          "type": "member_access",
+          "named": true
+        },
+        {
+          "type": "new_class",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "keyword",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "qualified_keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metadata",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "metadata_shorthand",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metadata_shorthand",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "namespace_map",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "number_bigdecimal",
+          "named": true
+        },
+        {
+          "type": "number_bigint",
+          "named": true
+        },
+        {
+          "type": "number_double",
+          "named": true
+        },
+        {
+          "type": "number_long",
+          "named": true
+        },
+        {
+          "type": "number_ratio",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number_long",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "params",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "program",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "qualified_keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "qualified_symbol",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "quote",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "reader_conditional",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "regex",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "semicolon",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "set",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "shebang_line",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "shorthand_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "symbol",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "qualified_symbol",
+          "named": true
+        },
+        {
+          "type": "threading_macro",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "symbolic_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "infinity",
+          "named": true
+        },
+        {
+          "type": "negative_infinity",
+          "named": true
+        },
+        {
+          "type": "not_a_number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "syntax_quote",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tagged_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "threading_macro",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "unquote",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unquote_splice",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "var_quote",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "vector",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "defn",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "gensym",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "interop",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "reader_conditional",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "shorthand_function",
+          "named": true
+        },
+        {
+          "type": "shorthand_function_arg",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbolic_value",
+          "named": true
+        },
+        {
+          "type": "syntax_quote",
+          "named": true
+        },
+        {
+          "type": "tagged_literal",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "var_quote",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nil",
+    "named": true
+  },
+  {
+    "type": "true",
+    "named": true
+  },
+  {
+    "type": "false",
+    "named": true
+  },
+  {
+    "type": "number_double",
+    "named": true
+  },
+  {
+    "type": "number_bigint",
+    "named": true
+  },
+  {
+    "type": "number_bigdecimal",
+    "named": true
+  },
+  {
+    "type": "number_ratio",
+    "named": true
+  },
+  {
+    "type": "##",
+    "named": false
+  },
+  {
+    "type": "infinity",
+    "named": true
+  },
+  {
+    "type": "negative_infinity",
+    "named": true
+  },
+  {
+    "type": "not_a_number",
+    "named": true
+  },
+  {
+    "type": "\\",
+    "named": false
+  },
+  {
+    "type": "newline",
+    "named": false
+  },
+  {
+    "type": "space",
+    "named": false
+  },
+  {
+    "type": "tab",
+    "named": false
+  },
+  {
+    "type": "formfeed",
+    "named": false
+  },
+  {
+    "type": "backspace",
+    "named": false
+  },
+  {
+    "type": "return",
+    "named": false
+  },
+  {
+    "type": "u",
+    "named": false
+  },
+  {
+    "type": "o",
+    "named": false
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "\\\"",
+    "named": false
+  },
+  {
+    "type": "#\"",
+    "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "(quote",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "::",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": "->",
+    "named": false
+  },
+  {
+    "type": "->>",
+    "named": false
+  },
+  {
+    "type": "as->",
+    "named": false
+  },
+  {
+    "type": "some->",
+    "named": false
+  },
+  {
+    "type": "some->>",
+    "named": false
+  },
+  {
+    "type": "cond->",
+    "named": false
+  },
+  {
+    "type": "cond->>",
+    "named": false
+  },
+  {
+    "type": "member_access",
+    "named": true
+  },
+  {
+    "type": "field_access",
+    "named": true
+  },
+  {
+    "type": "new_class",
+    "named": true
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  },
+  {
+    "type": "#::{",
+    "named": false
+  },
+  {
+    "type": "#{",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "#!",
+    "named": false
+  },
+  {
+    "type": "#_",
+    "named": false
+  },
+  {
+    "type": "comment",
+    "named": false
+  },
+  {
+    "type": "fn",
+    "named": false
+  },
+  {
+    "type": "#(",
+    "named": false
+  },
+  {
+    "type": "shorthand_function_arg",
+    "named": true
+  },
+  {
+    "type": "defn",
+    "named": false
+  },
+  {
+    "type": "defn-",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "^:",
+    "named": false
+  },
+  {
+    "type": "^\"",
+    "named": false
+  },
+  {
+    "type": "`",
+    "named": false
+  },
+  {
+    "type": "#'",
+    "named": false
+  },
+  {
+    "type": "~",
+    "named": false
+  },
+  {
+    "type": "~@",
+    "named": false
+  },
+  {
+    "type": "gensym",
+    "named": true
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "#?",
+    "named": false
+  },
+  {
+    "type": "#?@",
+    "named": false
+  }
+]
