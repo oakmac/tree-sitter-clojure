@@ -18,9 +18,9 @@ Interop - member + field access
     (symbol))
 
   (list
-    (interop (field_access))
+    (interop (field_access (classname)))
     (list
-      (interop (new_class))
+      (interop (new_class (classname)))
       (number (number_long))
       (number (number_long))))
   )

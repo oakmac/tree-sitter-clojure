@@ -42,6 +42,9 @@ HELICOPTER
 a/b
 foo/bar
 
+java.lang.String
+java.lang.Byte/decode
+
 ---
 
 (program
@@ -54,4 +57,7 @@ foo/bar
 
   (symbol (qualified_symbol))
   (symbol (qualified_symbol))
+
+  (symbol (classname))
+  (symbol (qualified_symbol (classname)))
   )
