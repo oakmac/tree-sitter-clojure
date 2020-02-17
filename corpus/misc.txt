@@ -64,19 +64,21 @@ Symbolic Value - ##Inf, ##-Inf, ##NaN
 Tagged Literal - #inst, #uuid, #foo/bar
 =====================================
 
-#inst
-#uuid
-# js
-#foo/bar
+#inst "foo"
+#uuid :bar
+# js 'hello
+#foo/bar [1 2 3]
 
 ---
 
 (program
-  (tagged_literal)
-  (tagged_literal)
-  (tagged_literal)
-  (tagged_literal)
-  )
+    (tagged_literal (string))
+    (tagged_literal (keyword))
+    (tagged_literal (quote (symbol)))
+    (tagged_literal (vector
+        (number (number_long))
+        (number (number_long))
+        (number (number_long)))))
 
 
 =====================================
