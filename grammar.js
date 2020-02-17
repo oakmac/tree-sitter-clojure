@@ -316,7 +316,7 @@ module.exports = grammar({
     // Tagged Literal - #inst, #uuid, #foo/bar
     // -------------------------------------------------------------------------
 
-    tagged_literal: $ => seq('#', choice($._symbol_chars, $._qualified_symbol)),
+    tagged_literal: $ => seq('#', choice($._symbol_chars, $._qualified_symbol), $._anything),
 
     // -------------------------------------------------------------------------
     // Reader Conditional - #?, #?@
