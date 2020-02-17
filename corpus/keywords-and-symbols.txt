@@ -38,16 +38,19 @@ rubber-baby-buggy-bumper!
 j3_!:7
 HELICOPTER
 +fiduciary+
+$foo$bar
 
 a/b
 foo/bar
 
 java.lang.String
 java.lang.Byte/decode
+clojure.core.server$start_server
 
 ---
 
 (program
+  (symbol)
   (symbol)
   (symbol)
   (symbol)
@@ -60,4 +63,5 @@ java.lang.Byte/decode
 
   (symbol (classname))
   (symbol (qualified_symbol (classname)))
+  (symbol (classname))
   )

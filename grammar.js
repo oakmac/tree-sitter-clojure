@@ -10,7 +10,7 @@
 // https://github.com/Tavistock/tree-sitter-clojure
 
 const DIGITS = token(sep1(/[0-9]+/, /_+/))
-const JAVA_ID = /[a-zA-Z_]\w*/;
+const JAVA_ID = /[a-zA-Z$_][$\w]*/;
 
 module.exports = grammar({
   name: 'clojure',
@@ -185,7 +185,7 @@ module.exports = grammar({
     ),
 
     // reference: https://clojure.org/reference/reader#_symbols
-    _symbol_chars: $ =>   /[a-zA-Z\*\+\!\-_\?][a-zA-Z0-9\*\+\!\-_\?\':]*/,
+    _symbol_chars: $ =>   /[a-zA-Z$\*\+\!\-_\?][a-zA-Z0-9$\*\+\!\-_\?\':]*/,
     qualified_symbol: $ => $._qualified_symbol,
     _qualified_symbol: $ => seq( choice($._symbol_chars, $.classname), '/', $._symbol_chars),
 
