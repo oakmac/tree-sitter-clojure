@@ -11,7 +11,9 @@ Keywords - :foo
 :use-smart-mode?
 
 ::foo
-::foo/bar
+:foo/bar
+:foo/:bar
+:foo/bar/baz
 
 ---
 
@@ -24,6 +26,8 @@ Keywords - :foo
   (keyword)
   (keyword)
 
+  (keyword (qualified_keyword))
+  (keyword (qualified_keyword))
   (keyword (qualified_keyword))
   (keyword (qualified_keyword))
   )

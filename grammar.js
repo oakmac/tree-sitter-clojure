@@ -160,9 +160,10 @@ module.exports = grammar({
     _unqualified_keyword: $ => seq(':', $._keyword_chars),
     qualified_keyword: $ => choice(
       seq('::', $._keyword_chars),
-      seq('::', $._keyword_chars, '/', $._keyword_chars)
+      seq($._unqualified_keyword, repeat1($._keyword_name))
     ),
     _keyword_chars: $ => /[a-zA-Z0-9\-_\!\+\.][a-zA-Z0-9\-_\!\+\.:\?]*/,
+    _keyword_name: $ => seq( '/', optional(':'), $._keyword_chars),
 
     // -------------------------------------------------------------------------
     // Symbols - foo
