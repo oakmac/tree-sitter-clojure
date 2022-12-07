@@ -1,5 +1,7 @@
 # tree-sitter-clojure [![Build Status](https://travis-ci.org/oakmac/tree-sitter-clojure.svg?branch=master)](https://travis-ci.org/oakmac/tree-sitter-clojure)
 
+> **Dec 2022 Update:** You may want to check out [sogaiu tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure). I believe it is the most complete tree-sitter grammar for Clojure.
+
 This repo contains a [tree-sitter] grammar for [Clojure] and [ClojureScript].
 
 [tree-sitter]:https://tree-sitter.github.io/tree-sitter/
