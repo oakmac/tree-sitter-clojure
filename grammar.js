@@ -10,6 +10,7 @@
 // https://github.com/Tavistock/tree-sitter-clojure
 
 const DIGITS = token(sep1(/[0-9]+/, /_+/))
+const JAVA_ID = /[a-zA-Z$_][$\w]*/;
 
 module.exports = grammar({
   name: 'clojure',
@@ -172,7 +173,8 @@ module.exports = grammar({
     _symbol: $ => choice(
       $.threading_macro,
       $._symbol_chars,
-      $.qualified_symbol
+      $.qualified_symbol,
+      $.classname
     ),
 
     threading_macro: $ => choice(
@@ -183,18 +185,21 @@ module.exports = grammar({
     ),
 
     // reference: https://clojure.org/reference/reader#_symbols
-    _symbol_chars: $ =>   /[a-zA-Z\*\+\!\-_\?][a-zA-Z0-9\*\+\!\-_\?\':]*/,
+    _symbol_chars: $ =>   /[a-zA-Z$\*\+\!\-_\?][a-zA-Z0-9$\*\+\!\-_\?\':]*/,
     qualified_symbol: $ => $._qualified_symbol,
-    _qualified_symbol: $ => seq($._symbol_chars, '/', $._symbol_chars),
+    _qualified_symbol: $ => seq( choice($._symbol_chars, $.classname), '/', $._symbol_chars),
+
+    classname: $ => token(seq(JAVA_ID, repeat(seq('.', JAVA_ID)))),
 
     // -------------------------------------------------------------------------
     // Interop - .foo .-foo java.blah.Klass.
     // -------------------------------------------------------------------------
 
     interop: $ => choice($.member_access, $.field_access, $.new_class),
-    member_access: $ => /\.[a-zA-Z_]\w*/,
-    field_access: $ => /\.-[a-zA-Z_]\w*/,
-    new_class: $ => /([a-zA-Z_]\w*\.)(\w+\.)*/,
+    member_access: $ => token(seq('.', JAVA_ID, repeat(seq('.', JAVA_ID)))),
+    field_access: $ => seq('.-', $.classname),
+    new_class: $ => seq($.classname, '.'),
+
     // TODO: "new" symbol, single dot, double dot, memfn, doto
     // https://github.com/oakmac/tree-sitter-clojure/issues/13
 
